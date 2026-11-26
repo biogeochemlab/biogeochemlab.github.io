@@ -3,29 +3,30 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BioGeoChem Lab | Dr. Maya Engel — HUJI</title>
+  <title>BioGeoChem Lab | Dr. Maya Engel — The Hebrew University of Jerusalem</title>
+  <meta name="description" content="The BioGeoChem Lab led by Dr. Maya Engel at the Department of Soil and Water Sciences, The Robert H. Smith Faculty of Agriculture, Food and Environment, The Hebrew University of Jerusalem." />
 
   <!-- Google Fonts: Source Serif 4 (Headings) & Inter (Body / UI) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet" />
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Structured Academic Palette Harmonized with Lab Logo -->
+  <!-- Custom Academic Design Tokens -->
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            paper: '#FAF9F6',
+            canvas: '#FAF9F6',
             card: '#FFFFFF',
             hairline: '#E6E2DA',
-            stone: '#F1EFEA',
+            wirefill: '#F1EFEA',
             wireborder: '#C8C2B8',
-            charcoal: '#1F2421',
-            slate: '#5A625E',
+            ink: '#1E293B',
+            muted: '#475569',
             burgundy: {
               DEFAULT: '#7F1D2B',
               hover: '#631521',
@@ -39,7 +40,7 @@
           },
           fontFamily: {
             serif: ['"Source Serif 4"', 'Georgia', 'serif'],
-            sans: ['"Inter"', 'system-ui', 'sans-serif'],
+            sans: ['"Inter"', 'system-ui', '-apple-system', 'sans-serif'],
           },
         },
       },
@@ -47,7 +48,7 @@
   </script>
 </head>
 
-<body class="bg-paper text-charcoal font-sans antialiased selection:bg-burgundy-soft selection:text-burgundy min-h-screen flex flex-col">
+<body class="bg-canvas text-ink font-sans antialiased selection:bg-burgundy-soft selection:text-burgundy min-h-screen flex flex-col">
 
   <!-- ===================================================================== -->
   <!-- STICKY TOP NAVIGATION BAR                                             -->
@@ -56,40 +57,42 @@
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-20 gap-4">
 
-        <!-- Left: Real Lab Logo (image_e55dfd.png) -->
-        <button
-          type="button"
-          onclick="navigateTo('home')"
-          class="flex items-center gap-3 text-left group focus:outline-none rounded-lg py-1"
+        <!-- Brand: Wireframe Logo Slot + Lab Name -->
+        <a
+          href="#home"
+          onclick="navigateTo('home', event)"
+          class="flex items-center gap-3 group focus:outline-none rounded-lg py-1"
           aria-label="BioGeoChem Lab Home"
         >
-          <img
-            src="image_e55dfd.png"
-            alt="BioGeoChem Cycling Lab Logo"
-            class="h-11 sm:h-12 w-auto object-contain transition-opacity group-hover:opacity-90"
-            onerror="this.style.display='none'; document.getElementById('header-logo-fallback').classList.remove('hidden');"
-          />
-          <div id="header-logo-fallback" class="hidden px-3 py-1.5 rounded-lg bg-stone border border-dashed border-wireborder text-xs font-medium text-charcoal">
-            BioGeoChem Lab
+          <div class="h-11 px-3 rounded-lg bg-wirefill border border-dashed border-wireborder flex items-center gap-2 shrink-0 group-hover:border-burgundy/60 transition-colors">
+            <svg class="w-4 h-4 text-muted shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5" aria-hidden="true">
+              <circle cx="12" cy="12" r="9"></circle>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8 12h8M12 8v8"></path>
+            </svg>
+            <span class="text-[11px] font-mono text-muted">images/logo.png</span>
           </div>
-        </button>
+          <div class="hidden sm:block leading-tight">
+            <span class="block font-serif text-lg font-semibold text-ink group-hover:text-burgundy transition-colors">BioGeoChem Lab</span>
+            <span class="block text-[11px] text-muted">Dr. Maya Engel · HUJI</span>
+          </div>
+        </a>
 
-        <!-- Center/Right: Desktop Navigation Links -->
+        <!-- Desktop Navigation Links -->
         <nav class="hidden lg:flex items-center gap-1" aria-label="Primary Navigation">
-          <button type="button" data-nav="home" onclick="navigateTo('home')" class="nav-link px-3 py-2 rounded-lg text-sm font-medium transition-colors">Home</button>
-          <button type="button" data-nav="research" onclick="navigateTo('research')" class="nav-link px-3 py-2 rounded-lg text-sm font-medium transition-colors">Research</button>
-          <button type="button" data-nav="group" onclick="navigateTo('group')" class="nav-link px-3 py-2 rounded-lg text-sm font-medium transition-colors">The Group</button>
-          <button type="button" data-nav="publications" onclick="navigateTo('publications')" class="nav-link px-3 py-2 rounded-lg text-sm font-medium transition-colors">Publications</button>
-          <button type="button" data-nav="news" onclick="navigateTo('news')" class="nav-link px-3 py-2 rounded-lg text-sm font-medium transition-colors">News</button>
-          <button type="button" data-nav="teaching" onclick="navigateTo('teaching')" class="nav-link px-3 py-2 rounded-lg text-sm font-medium transition-colors">Teaching &amp; Mentoring</button>
-          <button
-            type="button"
+          <a href="#home" data-nav="home" onclick="navigateTo('home', event)" class="nav-link px-3 py-2 rounded-lg text-sm font-medium transition-colors">Home</a>
+          <a href="#research" data-nav="research" onclick="navigateTo('research', event)" class="nav-link px-3 py-2 rounded-lg text-sm font-medium transition-colors">Research</a>
+          <a href="#group" data-nav="group" onclick="navigateTo('group', event)" class="nav-link px-3 py-2 rounded-lg text-sm font-medium transition-colors">The Group</a>
+          <a href="#publications" data-nav="publications" onclick="navigateTo('publications', event)" class="nav-link px-3 py-2 rounded-lg text-sm font-medium transition-colors">Publications</a>
+          <a href="#news" data-nav="news" onclick="navigateTo('news', event)" class="nav-link px-3 py-2 rounded-lg text-sm font-medium transition-colors">News</a>
+          <a href="#teaching" data-nav="teaching" onclick="navigateTo('teaching', event)" class="nav-link px-3 py-2 rounded-lg text-sm font-medium transition-colors">Teaching &amp; Mentoring</a>
+          <a
+            href="#join"
             data-nav="join"
-            onclick="navigateTo('join')"
+            onclick="navigateTo('join', event)"
             class="ml-3 px-4 py-2 rounded-lg bg-burgundy hover:bg-burgundy-hover text-white text-sm font-medium transition-colors shadow-sm"
           >
             Join Us
-          </button>
+          </a>
         </nav>
 
         <!-- Mobile Menu Button -->
@@ -97,7 +100,7 @@
           type="button"
           id="mobile-menu-btn"
           onclick="toggleMobileMenu()"
-          class="lg:hidden p-2.5 rounded-lg text-charcoal hover:bg-stone transition-colors focus:outline-none"
+          class="lg:hidden p-2.5 rounded-lg text-ink hover:bg-wirefill transition-colors focus:outline-none"
           aria-label="Toggle Menu"
           aria-expanded="false"
         >
@@ -115,27 +118,27 @@
     <!-- Mobile Navigation Drawer -->
     <div id="mobile-menu" class="hidden lg:hidden border-t border-hairline bg-card">
       <div class="px-4 py-4 space-y-1">
-        <button type="button" data-nav="home" onclick="navigateTo('home')" class="mobile-nav-link block w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium transition-colors">Home</button>
-        <button type="button" data-nav="research" onclick="navigateTo('research')" class="mobile-nav-link block w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium transition-colors">Research</button>
-        <button type="button" data-nav="group" onclick="navigateTo('group')" class="mobile-nav-link block w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium transition-colors">The Group</button>
-        <button type="button" data-nav="publications" onclick="navigateTo('publications')" class="mobile-nav-link block w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium transition-colors">Publications</button>
-        <button type="button" data-nav="news" onclick="navigateTo('news')" class="mobile-nav-link block w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium transition-colors">News</button>
-        <button type="button" data-nav="teaching" onclick="navigateTo('teaching')" class="mobile-nav-link block w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium transition-colors">Teaching &amp; Mentoring</button>
+        <a href="#home" data-nav="home" onclick="navigateTo('home', event)" class="mobile-nav-link block w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium transition-colors">Home</a>
+        <a href="#research" data-nav="research" onclick="navigateTo('research', event)" class="mobile-nav-link block w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium transition-colors">Research</a>
+        <a href="#group" data-nav="group" onclick="navigateTo('group', event)" class="mobile-nav-link block w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium transition-colors">The Group</a>
+        <a href="#publications" data-nav="publications" onclick="navigateTo('publications', event)" class="mobile-nav-link block w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium transition-colors">Publications</a>
+        <a href="#news" data-nav="news" onclick="navigateTo('news', event)" class="mobile-nav-link block w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium transition-colors">News</a>
+        <a href="#teaching" data-nav="teaching" onclick="navigateTo('teaching', event)" class="mobile-nav-link block w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium transition-colors">Teaching &amp; Mentoring</a>
         <div class="pt-2">
-          <button
-            type="button"
-            onclick="navigateTo('join')"
-            class="w-full px-4 py-2.5 rounded-lg bg-burgundy hover:bg-burgundy-hover text-white text-sm font-medium transition-colors text-center"
+          <a
+            href="#join"
+            onclick="navigateTo('join', event)"
+            class="block w-full px-4 py-2.5 rounded-lg bg-burgundy hover:bg-burgundy-hover text-white text-sm font-medium transition-colors text-center"
           >
             Join Us
-          </button>
+          </a>
         </div>
       </div>
     </div>
   </header>
 
   <!-- ===================================================================== -->
-  <!-- MAIN CONTENT VIEWS (7 PAGES)                                          -->
+  <!-- MAIN CONTENT VIEWS (7 PAGES WITH HASH ROUTING)                        -->
   <!-- ===================================================================== -->
   <main class="flex-grow">
 
@@ -144,59 +147,60 @@
     <!-- =================================================================== -->
     <section id="page-home" class="page-view">
 
-      <!-- Hero Section (2-Column Split on Desktop) -->
+      <!-- Hero Section (2-Column) -->
       <div class="border-b border-hairline bg-card">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
           <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
 
             <!-- Left Column: Mission & Actions -->
             <div class="lg:col-span-6 space-y-6">
-              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-soft text-teal text-xs font-medium tracking-wide">
-                Department of Soil &amp; Water Sciences · HUJI
+              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-soft text-teal text-xs font-semibold tracking-wide">
+                Department of Soil and Water Sciences · HUJI
               </div>
 
-              <h1 class="font-serif text-4xl sm:text-5xl font-semibold text-charcoal tracking-tight leading-[1.12]">
-                BioGeoChem Lab
+              <h1 class="font-serif text-4xl sm:text-5xl font-semibold text-ink tracking-tight leading-[1.12]">
+                Exploring Biogeochemical Processes
               </h1>
 
-              <p class="text-base sm:text-lg text-slate leading-relaxed">
-                Led by Dr. Maya Engel at the Hebrew University of Jerusalem, our lab explores coupled biogeochemical cycles at the mineral–organic–microbial interface. We seek to understand how fundamental interfacial chemistry governs carbon persistence, nutrient availability, and environmental resilience in soils and sediments.
+              <p class="text-base sm:text-lg text-muted leading-relaxed">
+                We study the biogeochemical processes and interactions between nutrients, contaminants, organic matter, and minerals in the environment—focusing on organic matter functionality, redox dynamics, and element cycling.
               </p>
 
               <div class="flex flex-wrap items-center gap-3 pt-2">
-                <button
-                  type="button"
-                  onclick="navigateTo('research')"
+                <a
+                  href="#research"
+                  onclick="navigateTo('research', event)"
                   class="px-5 py-3 rounded-lg bg-burgundy hover:bg-burgundy-hover text-white text-sm font-medium transition-colors shadow-sm"
                 >
                   Explore Research
-                </button>
-                <button
-                  type="button"
-                  onclick="navigateTo('join')"
-                  class="px-5 py-3 rounded-lg bg-card hover:bg-stone text-charcoal border border-hairline text-sm font-medium transition-colors"
+                </a>
+                <a
+                  href="#join"
+                  onclick="navigateTo('join', event)"
+                  class="px-5 py-3 rounded-lg bg-card hover:bg-wirefill text-ink border border-hairline text-sm font-medium transition-colors"
                 >
                   Join the Lab
-                </button>
+                </a>
               </div>
             </div>
 
-            <!-- Right Column: Real Biogeochemical Cycling Diagram (image_e55de3.jpg) -->
+            <!-- Right Column: Dark-Framed Wireframe for Cycling Diagram -->
             <div class="lg:col-span-6">
-              <div class="rounded-2xl bg-black p-4 sm:p-6 shadow-md border border-charcoal/10 overflow-hidden">
-                <div class="flex items-center justify-center">
-                  <img
-                    src="image_e55de3.jpg"
-                    alt="Coupled Biogeochemical Cycling Diagram (C, N, Fe, Mn, S)"
-                    class="w-full h-auto max-h-[420px] object-contain rounded-lg"
-                    onerror="this.style.display='none'; document.getElementById('hero-diagram-fallback').classList.remove('hidden');"
-                  />
-                  <div id="hero-diagram-fallback" class="hidden w-full aspect-[4/3] rounded-lg border border-dashed border-slate/50 flex items-center justify-center text-xs text-stone/80 p-6 text-center">
-                    Biogeochemical Cycling Diagram (image_e55de3.jpg)
-                  </div>
+              <div class="rounded-2xl bg-slate-950 p-5 sm:p-6 shadow-md border border-ink/10">
+                <div class="relative aspect-[4/3] w-full rounded-xl bg-slate-900/90 border border-dashed border-slate-600 flex flex-col items-center justify-center p-6 text-center">
+                  <span class="absolute top-3 right-3 text-[11px] font-mono text-slate-400">4:3</span>
+                  <svg class="w-10 h-10 text-slate-400 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.35">
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <circle cx="12" cy="7.5" r="2"></circle>
+                    <circle cx="7.5" cy="14.5" r="2"></circle>
+                    <circle cx="16.5" cy="14.5" r="2"></circle>
+                    <path stroke-linecap="round" d="M10.5 9L8.5 12.8M13.5 9l2 3.8M9.5 14.5h5"></path>
+                  </svg>
+                  <p class="text-sm font-medium text-slate-100">Biogeochemical Cycling Diagram</p>
+                  <p class="text-xs font-mono text-slate-400 mt-1">images/cycling-diagram.jpg</p>
                 </div>
-                <p class="text-xs text-stone/75 text-center mt-4 pt-3 border-t border-white/10">
-                  Coupled C, N, Fe, Mn, and S cycling connecting soil chemistry with broader ecosystem services.
+                <p class="text-xs text-slate-400 text-center mt-4 pt-3 border-t border-slate-800">
+                  Coupled C, N, Fe, Mn, and S cycling linking interfacial soil chemistry with ecosystem services.
                 </p>
               </div>
             </div>
@@ -205,23 +209,39 @@
         </div>
       </div>
 
-      <!-- Core Research Themes (3 Clean White Cards) -->
+      <!-- Core Research Pillars (4 Scannable Cards) -->
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-16">
         <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
           <div>
-            <p class="text-xs font-semibold uppercase tracking-wider text-teal mb-1.5">What We Study</p>
-            <h2 class="font-serif text-3xl font-semibold text-charcoal">Core Research Themes</h2>
+            <p class="text-xs font-semibold uppercase tracking-wider text-teal mb-1.5">Research Themes</p>
+            <h2 class="font-serif text-3xl font-semibold text-ink">Core Research Pillars</h2>
           </div>
-          <button
-            type="button"
-            onclick="navigateTo('research')"
+          <a
+            href="#research"
+            onclick="navigateTo('research', event)"
             class="text-sm font-medium text-burgundy hover:text-burgundy-hover transition-colors self-start sm:self-auto"
           >
-            View research areas →
-          </button>
+            Explore all research areas →
+          </a>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <!-- Pillar 1 -->
+          <div class="bg-card rounded-xl border border-hairline p-6 flex flex-col justify-between hover:border-wireborder transition-colors">
+            <div>
+              <div class="w-9 h-9 rounded-lg bg-teal-soft text-teal flex items-center justify-center mb-4">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.6">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v18M5 10c2.5-1 5 1 7 0s4.5-1 7 0M5 16c2.5-1 5 1 7 0s4.5-1 7 0"></path>
+                </svg>
+              </div>
+              <h3 class="font-serif text-lg font-semibold text-ink mb-2 leading-snug">CO₂ Mitigation &amp; Natural Sequestration</h3>
+              <p class="text-sm text-muted leading-relaxed">
+                Investigating silicate mineral weathering and organic matter preservation under anoxic marine conditions.
+              </p>
+            </div>
+          </div>
+
+          <!-- Pillar 2 -->
           <div class="bg-card rounded-xl border border-hairline p-6 flex flex-col justify-between hover:border-wireborder transition-colors">
             <div>
               <div class="w-9 h-9 rounded-lg bg-burgundy-soft text-burgundy flex items-center justify-center mb-4">
@@ -230,13 +250,14 @@
                   <circle cx="12" cy="12" r="3"></circle>
                 </svg>
               </div>
-              <h3 class="font-serif text-xl font-semibold text-charcoal mb-2">Organo-Mineral Interactions</h3>
-              <p class="text-sm text-slate leading-relaxed">
-                Understanding how organic matter associates with mineral surfaces to influence carbon stability and soil structure across scales.
+              <h3 class="font-serif text-lg font-semibold text-ink mb-2 leading-snug">Mineral–Organic Matter Resilience</h3>
+              <p class="text-sm text-muted leading-relaxed">
+                Examining mineral–organic aging and carbon persistence across terrestrial-to-aquatic transitions.
               </p>
             </div>
           </div>
 
+          <!-- Pillar 3 -->
           <div class="bg-card rounded-xl border border-hairline p-6 flex flex-col justify-between hover:border-wireborder transition-colors">
             <div>
               <div class="w-9 h-9 rounded-lg bg-teal-soft text-teal flex items-center justify-center mb-4">
@@ -245,58 +266,68 @@
                   <path stroke-linecap="round" stroke-linejoin="round" d="M16 8h3V5M8 16H5v3"></path>
                 </svg>
               </div>
-              <h3 class="font-serif text-xl font-semibold text-charcoal mb-2">Redox &amp; Elemental Cycling</h3>
-              <p class="text-sm text-slate leading-relaxed">
-                Exploring how redox-active minerals and microbial activity couple the transformations of iron, carbon, nitrogen, and essential nutrients.
+              <h3 class="font-serif text-lg font-semibold text-ink mb-2 leading-snug">Nitrogen Cycling &amp; N₂O Dynamics</h3>
+              <p class="text-sm text-muted leading-relaxed">
+                Disentangling abiotic and biotic controls on nitrogen oxide formation in dynamic soil environments.
               </p>
             </div>
           </div>
 
-          <div class="bg-card rounded-xl border border-hairline p-6 flex flex-col justify-between hover:border-wireborder transition-colors">
+          <!-- Pillar 4 -->
+          <div class="bg-card rounded-xl border border-hairline p-6 flex flex-col justify-between hover:border-burgundy/40 transition-colors">
             <div>
-              <div class="w-9 h-9 rounded-lg bg-stone text-charcoal flex items-center justify-center mb-4">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.6">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v18M5 10c2.5-1 5 1 7 0s4.5-1 7 0M5 16c2.5-1 5 1 7 0s4.5-1 7 0"></path>
-                </svg>
+              <div class="flex items-center justify-between gap-2 mb-4">
+                <div class="w-9 h-9 rounded-lg bg-burgundy-soft text-burgundy flex items-center justify-center">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 2L4 7v10l8 5 8-5V7l-8-5z"></path>
+                  </svg>
+                </div>
+                <a
+                  href="#join"
+                  onclick="navigateTo('join', event)"
+                  class="px-2.5 py-1 rounded-full bg-burgundy-soft text-burgundy hover:bg-burgundy hover:text-white text-[11px] font-semibold transition-colors"
+                >
+                  Open MSc Position
+                </a>
               </div>
-              <h3 class="font-serif text-xl font-semibold text-charcoal mb-2">Soil &amp; Environmental Resilience</h3>
-              <p class="text-sm text-slate leading-relaxed">
-                Linking molecular-level soil chemistry to sustainable agriculture, water quality, and climate adaptation in changing environments.
+              <h3 class="font-serif text-lg font-semibold text-ink mb-2 leading-snug">Nutrient Recovery &amp; Mineral Precipitation</h3>
+              <p class="text-sm text-muted leading-relaxed">
+                Evaluating sustainable phosphorus recovery via iron-phosphate (vivianite) precipitation pathways.
               </p>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Lab Snapshots (3-Column Uniform Wireframe Gallery with Lightbox) -->
-      <div class="bg-stone/60 border-y border-hairline">
+      <!-- A Sneak Peek Into Our Experiments (6-Tile Wireframe Lightbox Grid) -->
+      <div class="bg-wirefill/60 border-y border-hairline">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-16">
           <div class="mb-8">
             <p class="text-xs font-semibold uppercase tracking-wider text-burgundy mb-1.5">Inside the Lab</p>
-            <h2 class="font-serif text-3xl font-semibold text-charcoal">Lab Snapshots</h2>
-            <p class="text-sm text-slate mt-1">Click any photo slot to preview its lightbox view.</p>
+            <h2 class="font-serif text-3xl font-semibold text-ink">A Sneak Peek Into Our Experiments</h2>
+            <p class="text-sm text-muted mt-1">Click any slot below to preview the full caption in the lightbox.</p>
           </div>
 
-          <div id="snapshots-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <!-- Populated by JS -->
+          <div id="experiments-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Populated by JS from EXPERIMENTS -->
           </div>
         </div>
       </div>
 
-      <!-- Latest News (3 Compact Cards Pulling from News Data) -->
+      <!-- Latest News Preview (3 Most Recent Items) -->
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-16">
         <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
           <div>
             <p class="text-xs font-semibold uppercase tracking-wider text-teal mb-1.5">Lab Updates</p>
-            <h2 class="font-serif text-3xl font-semibold text-charcoal">Latest News</h2>
+            <h2 class="font-serif text-3xl font-semibold text-ink">Latest News</h2>
           </div>
-          <button
-            type="button"
-            onclick="navigateTo('news')"
+          <a
+            href="#news"
+            onclick="navigateTo('news', event)"
             class="text-sm font-medium text-burgundy hover:text-burgundy-hover transition-colors self-start sm:self-auto"
           >
-            All news &amp; milestones →
-          </button>
+            View all news →
+          </a>
         </div>
 
         <div id="home-news-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -304,44 +335,32 @@
         </div>
       </div>
 
-      <!-- Funding & Collaborations Strip -->
+      <!-- Funding & Collaborators Strip -->
       <div class="bg-card border-y border-hairline">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <p class="text-xs font-semibold uppercase tracking-wider text-slate text-center mb-6">
-            Funding &amp; Academic Collaborations
-          </p>
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
-            <div class="aspect-[3/1] rounded-lg bg-stone border border-dashed border-wireborder flex flex-col items-center justify-center px-3 text-center">
-              <span class="text-xs font-medium text-charcoal">[Logo: ISF]</span>
-              <span class="text-[10px] text-slate">3:1</span>
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-8">
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-wider text-muted text-center mb-5">
+              Supported By
+            </p>
+            <div class="flex flex-wrap items-center justify-center gap-3">
+              <span class="px-4 py-2 rounded-lg bg-canvas border border-hairline text-xs sm:text-sm font-medium text-ink">Israel Science Foundation (ISF)</span>
+              <span class="px-4 py-2 rounded-lg bg-canvas border border-hairline text-xs sm:text-sm font-medium text-ink">US–Israel BSF</span>
+              <span class="px-4 py-2 rounded-lg bg-canvas border border-hairline text-xs sm:text-sm font-medium text-ink">Einstein Foundation Berlin</span>
+              <span class="px-4 py-2 rounded-lg bg-canvas border border-hairline text-xs sm:text-sm font-medium text-ink">EU AgroServ</span>
+              <span class="px-4 py-2 rounded-lg bg-canvas border border-hairline text-xs sm:text-sm font-medium text-ink">HUJI–UIUC Seed Program</span>
+              <span class="px-4 py-2 rounded-lg bg-canvas border border-hairline text-xs sm:text-sm font-medium text-ink">HUJI–BGU Partnership for Sustainability</span>
             </div>
-            <div class="aspect-[3/1] rounded-lg bg-stone border border-dashed border-wireborder flex flex-col items-center justify-center px-3 text-center">
-              <span class="text-xs font-medium text-charcoal">[Logo: BSF]</span>
-              <span class="text-[10px] text-slate">3:1</span>
-            </div>
-            <div class="aspect-[3/1] rounded-lg bg-stone border border-dashed border-wireborder flex flex-col items-center justify-center px-3 text-center">
-              <span class="text-xs font-medium text-charcoal">[Logo: Einstein Foundation]</span>
-              <span class="text-[10px] text-slate">3:1</span>
-            </div>
-            <div class="aspect-[3/1] rounded-lg bg-stone border border-dashed border-wireborder flex flex-col items-center justify-center px-3 text-center">
-              <span class="text-xs font-medium text-charcoal">[Logo: EU AgroServ]</span>
-              <span class="text-[10px] text-slate">3:1</span>
-            </div>
-            <div class="aspect-[3/1] rounded-lg bg-stone border border-dashed border-wireborder flex flex-col items-center justify-center px-3 text-center">
-              <span class="text-xs font-medium text-charcoal">[Partner: TU Berlin]</span>
-              <span class="text-[10px] text-slate">3:1</span>
-            </div>
-            <div class="aspect-[3/1] rounded-lg bg-stone border border-dashed border-wireborder flex flex-col items-center justify-center px-3 text-center">
-              <span class="text-xs font-medium text-charcoal">[Partner: Univ. of Arizona]</span>
-              <span class="text-[10px] text-slate">3:1</span>
-            </div>
-            <div class="aspect-[3/1] rounded-lg bg-stone border border-dashed border-wireborder flex flex-col items-center justify-center px-3 text-center">
-              <span class="text-xs font-medium text-charcoal">[Partner: UIUC]</span>
-              <span class="text-[10px] text-slate">3:1</span>
-            </div>
-            <div class="aspect-[3/1] rounded-lg bg-stone border border-dashed border-wireborder flex flex-col items-center justify-center px-3 text-center">
-              <span class="text-xs font-medium text-charcoal">[Partner: BGU]</span>
-              <span class="text-[10px] text-slate">3:1</span>
+          </div>
+
+          <div class="pt-6 border-t border-hairline/70">
+            <p class="text-xs font-semibold uppercase tracking-wider text-muted text-center mb-4">
+              Collaborating Institutions
+            </p>
+            <div class="flex flex-wrap items-center justify-center gap-3">
+              <span class="px-3.5 py-1.5 rounded-full bg-teal-soft text-teal text-xs font-semibold">TU Berlin</span>
+              <span class="px-3.5 py-1.5 rounded-full bg-teal-soft text-teal text-xs font-semibold">University of Arizona</span>
+              <span class="px-3.5 py-1.5 rounded-full bg-teal-soft text-teal text-xs font-semibold">University of Illinois Urbana-Champaign (UIUC)</span>
+              <span class="px-3.5 py-1.5 rounded-full bg-teal-soft text-teal text-xs font-semibold">Ben-Gurion University of the Negev (BGU)</span>
             </div>
           </div>
         </div>
@@ -349,20 +368,20 @@
 
       <!-- Compact Join Us Banner -->
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
-        <div class="rounded-2xl bg-teal text-white p-7 sm:p-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+        <div class="rounded-2xl bg-teal text-white p-7 sm:p-10 flex flex-col md:flex-row md:items-center justify-between gap-6 shadow-sm">
           <div class="max-w-2xl space-y-2">
-            <h2 class="font-serif text-2xl sm:text-3xl font-semibold">Interested in joining the BioGeoChem Lab?</h2>
-            <p class="text-sm sm:text-base text-white/85">
-              We welcome inquiries from curious, motivated MSc, PhD, and postdoctoral researchers interested in soil and environmental biogeochemistry.
-            </p>
+            <p class="text-xs font-semibold uppercase tracking-wider text-white/75">Join the BioGeoChem Lab</p>
+            <h2 class="font-serif text-2xl sm:text-3xl font-semibold leading-snug">
+              “If you're creative, independent, and dedicated—and enjoy thinking, learning, and hands-on exploration—we'd love to have you join our journey!”
+            </h2>
           </div>
-          <button
-            type="button"
-            onclick="navigateTo('join')"
-            class="px-5 py-3 rounded-lg bg-white text-teal hover:bg-stone font-medium text-sm transition-colors shrink-0 self-start md:self-auto"
+          <a
+            href="#join"
+            onclick="navigateTo('join', event)"
+            class="px-5 py-3 rounded-lg bg-white text-teal hover:bg-wirefill font-medium text-sm transition-colors shrink-0 self-start md:self-auto"
           >
-            See Opportunities →
-          </button>
+            Join Us →
+          </a>
         </div>
       </div>
 
@@ -377,156 +396,172 @@
         <!-- Header -->
         <div class="max-w-3xl space-y-3">
           <p class="text-xs font-semibold uppercase tracking-wider text-teal">Research</p>
-          <h1 class="font-serif text-4xl sm:text-5xl font-semibold text-charcoal">Research Areas &amp; Capabilities</h1>
-          <p class="text-base text-slate leading-relaxed">
-            Our research bridges fundamental biogeochemical processes with real-world soil and water challenges. Below is a high-level overview of our active thematic areas and laboratory capabilities.
+          <h1 class="font-serif text-4xl sm:text-5xl font-semibold text-ink">Research Areas &amp; Capabilities</h1>
+          <p class="text-base text-muted leading-relaxed">
+            Our group investigates coupled biogeochemical processes connecting soil minerals, organic matter, microorganisms, nutrients, and water quality. Below is a high-level overview of our active research directions and laboratory infrastructure.
           </p>
         </div>
 
-        <!-- High-Level Research Areas (4 Structured Cards, 16:10 Wireframes) -->
+        <!-- 4 High-Level Research Project Cards -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-          <!-- Area 1 -->
+          <!-- Project 1 -->
           <article class="bg-card rounded-xl border border-hairline overflow-hidden flex flex-col">
-            <div class="relative aspect-[16/10] w-full bg-stone border-b border-dashed border-wireborder flex flex-col items-center justify-center p-5 text-center">
-              <span class="absolute top-3 right-3 text-[11px] font-mono text-slate">16:10</span>
-              <svg class="w-7 h-7 text-slate/60 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.4">
+            <div class="relative aspect-[16/10] w-full bg-wirefill border-b border-dashed border-wireborder flex flex-col items-center justify-center p-5 text-center">
+              <span class="absolute top-3 right-3 text-[11px] font-mono text-muted">16:10</span>
+              <svg class="w-7 h-7 text-muted/70 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.4">
                 <rect x="3" y="3" width="18" height="18" rx="2"></rect>
                 <circle cx="8.5" cy="8.5" r="1.5"></circle>
                 <path d="M21 15l-5-5L5 21"></path>
               </svg>
-              <span class="text-xs font-medium text-charcoal">[Photo: Mineral–Organic Interfaces]</span>
+              <span class="text-xs font-medium text-ink">CO₂ Mitigation &amp; Carbon Sequestration</span>
+              <span class="text-[11px] font-mono text-muted mt-0.5">images/research-co2.jpg</span>
             </div>
             <div class="p-6 flex-grow flex flex-col justify-between space-y-4">
               <div>
-                <h2 class="font-serif text-2xl font-semibold text-charcoal mb-2">Organo-Mineral Stabilization</h2>
-                <p class="text-sm text-slate leading-relaxed">
-                  We study how organic compounds interact with soil minerals to regulate long-term carbon storage. Our focus is on uncovering the broad chemical drivers that make soil carbon persistent or vulnerable under shifting environmental conditions.
+                <h2 class="font-serif text-2xl font-semibold text-ink mb-2">Harnessing Natural Phenomena for CO₂ Mitigation</h2>
+                <p class="text-sm text-muted leading-relaxed">
+                  We evaluate natural geochemical pathways for carbon sequestration, spanning enhanced silicate mineral weathering in soils and the persistence of organic matter under anoxic marine conditions.
                 </p>
               </div>
               <div class="flex flex-wrap gap-2 pt-2">
-                <span class="px-2.5 py-1 rounded-md bg-teal-soft text-teal text-xs font-medium">Carbon Cycling</span>
-                <span class="px-2.5 py-1 rounded-md bg-stone text-slate text-xs font-medium">Einstein Foundation</span>
+                <span class="px-2.5 py-1 rounded-md bg-teal-soft text-teal text-xs font-medium">HUJI–UIUC (Prof. Yuji Arai)</span>
+                <span class="px-2.5 py-1 rounded-md bg-wirefill text-muted text-xs font-medium">EU AgroServ</span>
+                <span class="px-2.5 py-1 rounded-md bg-wirefill text-muted text-xs font-medium">US–Israel BSF (Prof. Malak Tfaily, Univ. of Arizona)</span>
               </div>
             </div>
           </article>
 
-          <!-- Area 2 -->
+          <!-- Project 2 -->
           <article class="bg-card rounded-xl border border-hairline overflow-hidden flex flex-col">
-            <div class="relative aspect-[16/10] w-full bg-stone border-b border-dashed border-wireborder flex flex-col items-center justify-center p-5 text-center">
-              <span class="absolute top-3 right-3 text-[11px] font-mono text-slate">16:10</span>
-              <svg class="w-7 h-7 text-slate/60 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.4">
+            <div class="relative aspect-[16/10] w-full bg-wirefill border-b border-dashed border-wireborder flex flex-col items-center justify-center p-5 text-center">
+              <span class="absolute top-3 right-3 text-[11px] font-mono text-muted">16:10</span>
+              <svg class="w-7 h-7 text-muted/70 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.4">
                 <rect x="3" y="3" width="18" height="18" rx="2"></rect>
                 <circle cx="8.5" cy="8.5" r="1.5"></circle>
                 <path d="M21 15l-5-5L5 21"></path>
               </svg>
-              <span class="text-xs font-medium text-charcoal">[Photo: Redox &amp; Iron Systems]</span>
+              <span class="text-xs font-medium text-ink">Mineral–Organic Matter Resilience</span>
+              <span class="text-[11px] font-mono text-muted mt-0.5">images/research-maom.jpg</span>
             </div>
             <div class="p-6 flex-grow flex flex-col justify-between space-y-4">
               <div>
-                <h2 class="font-serif text-2xl font-semibold text-charcoal mb-2">Redox Dynamics in Soils &amp; Sediments</h2>
-                <p class="text-sm text-slate leading-relaxed">
-                  Fluctuating oxygen levels reshape mineral phases and drive coupled elemental transformations. We examine how iron and manganese cycling interact with organic matter and trace elements across oxic–anoxic transitions.
+                <h2 class="font-serif text-2xl font-semibold text-ink mb-2">Mineral–Organic Matter Resilience &amp; Environmental Transitions</h2>
+                <p class="text-sm text-muted leading-relaxed">
+                  Focusing on iron mineral–organic matter assemblages, we investigate how aging and shifting salinity or redox gradients govern the stability and fate of carbon moving from terrestrial to aquatic systems.
                 </p>
               </div>
               <div class="flex flex-wrap gap-2 pt-2">
-                <span class="px-2.5 py-1 rounded-md bg-teal-soft text-teal text-xs font-medium">Redox Biogeochemistry</span>
-                <span class="px-2.5 py-1 rounded-md bg-stone text-slate text-xs font-medium">BSF</span>
+                <span class="px-2.5 py-1 rounded-md bg-teal-soft text-teal text-xs font-medium">ISF</span>
+                <span class="px-2.5 py-1 rounded-md bg-wirefill text-muted text-xs font-medium">Einstein Foundation (Prof. Mina Bizic, TU Berlin)</span>
               </div>
             </div>
           </article>
 
-          <!-- Area 3 -->
+          <!-- Project 3 -->
           <article class="bg-card rounded-xl border border-hairline overflow-hidden flex flex-col">
-            <div class="relative aspect-[16/10] w-full bg-stone border-b border-dashed border-wireborder flex flex-col items-center justify-center p-5 text-center">
-              <span class="absolute top-3 right-3 text-[11px] font-mono text-slate">16:10</span>
-              <svg class="w-7 h-7 text-slate/60 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.4">
+            <div class="relative aspect-[16/10] w-full bg-wirefill border-b border-dashed border-wireborder flex flex-col items-center justify-center p-5 text-center">
+              <span class="absolute top-3 right-3 text-[11px] font-mono text-muted">16:10</span>
+              <svg class="w-7 h-7 text-muted/70 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.4">
                 <rect x="3" y="3" width="18" height="18" rx="2"></rect>
                 <circle cx="8.5" cy="8.5" r="1.5"></circle>
                 <path d="M21 15l-5-5L5 21"></path>
               </svg>
-              <span class="text-xs font-medium text-charcoal">[Photo: Nutrient &amp; Mineral Formation]</span>
+              <span class="text-xs font-medium text-ink">Soil Nitrogen Cycling &amp; N₂O</span>
+              <span class="text-[11px] font-mono text-muted mt-0.5">images/research-n2o.jpg</span>
             </div>
             <div class="p-6 flex-grow flex flex-col justify-between space-y-4">
               <div>
-                <h2 class="font-serif text-2xl font-semibold text-charcoal mb-2">Nutrient Cycling &amp; Resource Recovery</h2>
-                <p class="text-sm text-slate leading-relaxed">
-                  Essential nutrients such as phosphorus and nitrogen are tightly linked to mineral formation and dissolution. We investigate pathways that support sustainable nutrient retention and recovery in managed ecosystems.
+                <h2 class="font-serif text-2xl font-semibold text-ink mb-2">Abiotic &amp; Biotic Controls on N₂O Emissions</h2>
+                <p class="text-sm text-muted leading-relaxed">
+                  We study the interplay between chemical and microbial pathways driving nitrogen oxide formation in soils, particularly during dynamic moisture and redox fluctuations.
                 </p>
               </div>
               <div class="flex flex-wrap gap-2 pt-2">
-                <span class="px-2.5 py-1 rounded-md bg-teal-soft text-teal text-xs font-medium">Nutrient Dynamics</span>
-                <span class="px-2.5 py-1 rounded-md bg-stone text-slate text-xs font-medium">ISF</span>
+                <span class="px-2.5 py-1 rounded-md bg-teal-soft text-teal text-xs font-medium">HUJI–BGU Partnership for Sustainability (Prof. Ilya Gelfand)</span>
               </div>
             </div>
           </article>
 
-          <!-- Area 4 -->
+          <!-- Project 4 -->
           <article class="bg-card rounded-xl border border-hairline overflow-hidden flex flex-col">
-            <div class="relative aspect-[16/10] w-full bg-stone border-b border-dashed border-wireborder flex flex-col items-center justify-center p-5 text-center">
-              <span class="absolute top-3 right-3 text-[11px] font-mono text-slate">16:10</span>
-              <svg class="w-7 h-7 text-slate/60 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.4">
+            <div class="relative aspect-[16/10] w-full bg-wirefill border-b border-dashed border-wireborder flex flex-col items-center justify-center p-5 text-center">
+              <span class="absolute top-3 right-3 text-[11px] font-mono text-muted">16:10</span>
+              <svg class="w-7 h-7 text-muted/70 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.4">
                 <rect x="3" y="3" width="18" height="18" rx="2"></rect>
                 <circle cx="8.5" cy="8.5" r="1.5"></circle>
                 <path d="M21 15l-5-5L5 21"></path>
               </svg>
-              <span class="text-xs font-medium text-charcoal">[Photo: Agricultural &amp; Semi-Arid Soils]</span>
+              <span class="text-xs font-medium text-ink">Phosphorus Recovery &amp; Vivianite</span>
+              <span class="text-[11px] font-mono text-muted mt-0.5">images/research-vivianite.jpg</span>
             </div>
             <div class="p-6 flex-grow flex flex-col justify-between space-y-4">
               <div>
-                <h2 class="font-serif text-2xl font-semibold text-charcoal mb-2">Sustainable Agroecosystems &amp; Water Quality</h2>
-                <p class="text-sm text-slate leading-relaxed">
-                  Working across semi-arid and agricultural landscapes, we examine how soil amendments and land management influence soil health, water quality, and the fate of environmental contaminants.
+                <div class="flex items-start justify-between gap-3 mb-2">
+                  <h2 class="font-serif text-2xl font-semibold text-ink leading-snug">Phosphorus Recovery &amp; Vivianite Precipitation</h2>
+                </div>
+                <p class="text-sm text-muted leading-relaxed">
+                  We evaluate sustainable nutrient recovery by investigating iron-phosphate (vivianite) mineral precipitation pathways and geochemical controls in complex aqueous environments.
                 </p>
               </div>
-              <div class="flex flex-wrap gap-2 pt-2">
-                <span class="px-2.5 py-1 rounded-md bg-teal-soft text-teal text-xs font-medium">Agroecosystems</span>
-                <span class="px-2.5 py-1 rounded-md bg-stone text-slate text-xs font-medium">EU AgroServ · International Partners</span>
+              <div class="flex flex-wrap items-center gap-2 pt-2">
+                <a
+                  href="#join"
+                  onclick="navigateTo('join', event)"
+                  class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-burgundy text-white hover:bg-burgundy-hover text-xs font-semibold transition-colors"
+                >
+                  <span class="w-1.5 h-1.5 rounded-full bg-white"></span>
+                  Open MSc Position →
+                </a>
+                <span class="px-2.5 py-1 rounded-md bg-wirefill text-muted text-xs font-medium">Nutrient Recovery</span>
               </div>
             </div>
           </article>
 
         </div>
 
-        <!-- Lab & Capabilities (High-Level) -->
-        <div class="bg-card rounded-2xl border border-hairline p-6 sm:p-10">
-          <div class="mb-8">
-            <p class="text-xs font-semibold uppercase tracking-wider text-burgundy mb-1.5">Infrastructure</p>
-            <h2 class="font-serif text-3xl font-semibold text-charcoal">Lab &amp; Analytical Capabilities</h2>
+        <!-- Lab & Analytical Capabilities -->
+        <div class="bg-card rounded-2xl border border-hairline p-6 sm:p-10 space-y-8">
+          <div class="max-w-3xl space-y-2">
+            <p class="text-xs font-semibold uppercase tracking-wider text-burgundy">Facilities &amp; Instrumentation</p>
+            <h2 class="font-serif text-3xl font-semibold text-ink">Lab &amp; Analytical Capabilities</h2>
+            <p class="text-sm sm:text-base text-muted leading-relaxed">
+              In June 2026, we moved into our newly renovated laboratory quarters after three years in a temporary space.
+            </p>
           </div>
 
           <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-            <!-- 16:9 Video Placeholder -->
+            <!-- Video Placeholder (16:9) -->
             <div class="lg:col-span-6">
-              <div class="relative aspect-video w-full rounded-xl bg-stone border border-dashed border-wireborder flex flex-col items-center justify-center p-6 text-center">
-                <span class="absolute top-3 right-3 text-[11px] font-mono text-slate">16:9</span>
+              <div class="relative aspect-video w-full rounded-xl bg-wirefill border border-dashed border-wireborder flex flex-col items-center justify-center p-6 text-center">
+                <span class="absolute top-3 right-3 text-[11px] font-mono text-muted">16:9</span>
                 <div class="w-12 h-12 rounded-full bg-card border border-hairline flex items-center justify-center mb-3 text-burgundy shadow-sm">
                   <svg class="w-5 h-5 ml-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.6">
                     <polygon points="6 4 20 12 6 20 6 4"></polygon>
                   </svg>
                 </div>
-                <p class="text-xs sm:text-sm font-medium text-charcoal">[Lab Space Video — Unlisted YouTube/Vimeo]</p>
-                <p class="text-xs text-slate mt-1">Tour of our renovated laboratory in Rehovot</p>
+                <p class="text-xs sm:text-sm font-medium text-ink">Lab Renovation Video — Unlisted YouTube/Vimeo embed</p>
+                <p class="text-xs text-muted mt-1">Newly Renovated Lab Quarters (June 2026)</p>
               </div>
             </div>
 
-            <!-- General Capabilities List -->
+            <!-- Capabilities Grid -->
             <div class="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div class="p-4 rounded-xl bg-paper border border-hairline">
-                <h3 class="font-semibold text-sm text-charcoal mb-1">Calorimetry &amp; Thermodynamics</h3>
-                <p class="text-xs text-slate leading-relaxed">Studying reaction energetics and interfacial binding processes.</p>
+              <div class="p-4 rounded-xl bg-canvas border border-hairline">
+                <h3 class="font-semibold text-sm text-ink mb-1">Anaerobic Environments</h3>
+                <p class="text-xs text-muted leading-relaxed">COY anaerobic chamber for controlled oxygen-free redox experimentation.</p>
               </div>
-              <div class="p-4 rounded-xl bg-paper border border-hairline">
-                <h3 class="font-semibold text-sm text-charcoal mb-1">Anaerobic Biogeochemistry</h3>
-                <p class="text-xs text-slate leading-relaxed">Controlled oxygen-free experimentation for redox-sensitive systems.</p>
+              <div class="p-4 rounded-xl bg-canvas border border-hairline">
+                <h3 class="font-semibold text-sm text-ink mb-1">Isothermal Calorimetry</h3>
+                <p class="text-xs text-muted leading-relaxed">TAM IV calorimetry for probing reaction energetics and interfacial processes.</p>
               </div>
-              <div class="p-4 rounded-xl bg-paper border border-hairline">
-                <h3 class="font-semibold text-sm text-charcoal mb-1">Chromatography &amp; Spectroscopy</h3>
-                <p class="text-xs text-slate leading-relaxed">Routine elemental, organic, and aqueous chemical characterization.</p>
+              <div class="p-4 rounded-xl bg-canvas border border-hairline">
+                <h3 class="font-semibold text-sm text-ink mb-1">Mineral Synthesis &amp; OM Analysis</h3>
+                <p class="text-xs text-muted leading-relaxed">Controlled synthesis of environmental minerals and organic matter characterization.</p>
               </div>
-              <div class="p-4 rounded-xl bg-paper border border-hairline">
-                <h3 class="font-semibold text-sm text-charcoal mb-1">Access to HUJI Nano Center</h3>
-                <p class="text-xs text-slate leading-relaxed">Nanoscale imaging and surface characterization through university core facilities.</p>
+              <div class="p-4 rounded-xl bg-canvas border border-hairline">
+                <h3 class="font-semibold text-sm text-ink mb-1">Micro-to-Nanoscale Analysis</h3>
+                <p class="text-xs text-muted leading-relaxed">Access to the HUJI Center for Nanoscience and Nanotechnology (TEM, SEM, XPS, Raman).</p>
               </div>
             </div>
           </div>
@@ -544,123 +579,123 @@
         <!-- Header -->
         <div class="max-w-3xl space-y-3">
           <p class="text-xs font-semibold uppercase tracking-wider text-teal">People</p>
-          <h1 class="font-serif text-4xl sm:text-5xl font-semibold text-charcoal">The Group</h1>
+          <h1 class="font-serif text-4xl sm:text-5xl font-semibold text-ink">The Group</h1>
+          <p class="text-base text-muted">
+            Meet the researchers, students, and alumni driving the BioGeoChem Lab at the Faculty of Agriculture in Rehovot.
+          </p>
         </div>
 
-        <!-- PI Spotlight Card -->
+        <!-- PI Spotlight: Dr. Maya Engel -->
         <div class="bg-card rounded-2xl border border-hairline p-6 sm:p-10">
           <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
-            <!-- 3:4 Portrait Wireframe -->
+
+            <!-- Portrait Wireframe + Verified Profile Links -->
             <div class="md:col-span-4 space-y-4">
-              <div class="relative aspect-[3/4] w-full rounded-xl bg-stone border border-dashed border-wireborder flex flex-col items-center justify-center p-5 text-center">
-                <span class="absolute top-3 right-3 text-[11px] font-mono text-slate">3:4</span>
-                <svg class="w-8 h-8 text-slate/60 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.4">
+              <div class="relative aspect-[3/4] w-full rounded-xl bg-wirefill border border-dashed border-wireborder flex flex-col items-center justify-center p-5 text-center">
+                <span class="absolute top-3 right-3 text-[11px] font-mono text-muted">3:4</span>
+                <svg class="w-9 h-9 text-muted/60 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.4">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
                   <circle cx="12" cy="7" r="4"></circle>
                 </svg>
-                <span class="text-xs font-medium text-charcoal">[Portrait: Dr. Maya Engel]</span>
+                <span class="text-xs font-medium text-ink">Dr. Maya Engel</span>
+                <span class="text-[11px] font-mono text-muted mt-0.5">images/maya-portrait.jpg</span>
               </div>
 
-              <!-- Academic Profile Links -->
+              <!-- Real External Academic Profile Links -->
               <div class="flex flex-wrap gap-2">
-                <a href="#scholar" onclick="event.preventDefault(); showToast('Link Google Scholar profile URL');" class="px-3 py-1.5 rounded-lg bg-paper border border-hairline hover:border-burgundy text-xs font-medium text-charcoal hover:text-burgundy transition-colors">Google Scholar</a>
-                <a href="#orcid" onclick="event.preventDefault(); showToast('Link ORCID profile URL');" class="px-3 py-1.5 rounded-lg bg-paper border border-hairline hover:border-burgundy text-xs font-medium text-charcoal hover:text-burgundy transition-colors">ORCID</a>
-                <a href="#researchgate" onclick="event.preventDefault(); showToast('Link ResearchGate profile URL');" class="px-3 py-1.5 rounded-lg bg-paper border border-hairline hover:border-burgundy text-xs font-medium text-charcoal hover:text-burgundy transition-colors">ResearchGate</a>
-                <a href="#huji" onclick="event.preventDefault(); showToast('Link HUJI Faculty Page URL');" class="px-3 py-1.5 rounded-lg bg-paper border border-hairline hover:border-burgundy text-xs font-medium text-charcoal hover:text-burgundy transition-colors">HUJI Faculty</a>
+                <a href="https://scholar.google.com/citations?user=d_bhZxkAAAAJ&hl=en" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-lg bg-canvas border border-hairline hover:border-burgundy text-xs font-medium text-ink hover:text-burgundy transition-colors">Google Scholar ↗</a>
+                <a href="https://orcid.org/0000-0002-0100-9037" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-lg bg-canvas border border-hairline hover:border-burgundy text-xs font-medium text-ink hover:text-burgundy transition-colors">ORCID ↗</a>
+                <a href="https://www.researchgate.net/profile/Maya-Engel-3" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-lg bg-canvas border border-hairline hover:border-burgundy text-xs font-medium text-ink hover:text-burgundy transition-colors">ResearchGate ↗</a>
+                <a href="https://soilandwater.agri.huji.ac.il/people/maya-engel" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-lg bg-canvas border border-hairline hover:border-burgundy text-xs font-medium text-ink hover:text-burgundy transition-colors">HUJI Dept. Page ↗</a>
+                <a href="https://nano.huji.ac.il/people/maya-engel" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-lg bg-canvas border border-hairline hover:border-burgundy text-xs font-medium text-ink hover:text-burgundy transition-colors">HUJI Nano Center ↗</a>
+                <a href="https://www.yissum.co.il/services/biogeochem-lab/" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-lg bg-canvas border border-hairline hover:border-burgundy text-xs font-medium text-ink hover:text-burgundy transition-colors">Yissum Profile ↗</a>
               </div>
             </div>
 
-            <!-- Bio + More About Maya -->
+            <!-- Bio & More About Maya -->
             <div class="md:col-span-8 space-y-6">
               <div>
-                <span class="inline-block px-2.5 py-1 rounded-md bg-burgundy-soft text-burgundy text-xs font-semibold mb-2">Principal Investigator</span>
-                <h2 class="font-serif text-3xl font-semibold text-charcoal">Dr. Maya Engel</h2>
-                <p class="text-sm text-slate mt-1">Department of Soil and Water Sciences · Faculty of Agriculture, HUJI (Rehovot)</p>
-              </div>
-
-              <p class="text-sm sm:text-base text-slate leading-relaxed">
-                Dr. Maya Engel is a faculty member in the Department of Soil and Water Sciences at the Hebrew University of Jerusalem. Her research investigates the chemical and biological processes operating at mineral–organic–water interfaces, connecting fundamental environmental chemistry with soil sustainability and biogeochemical cycling.
-              </p>
-
-              <!-- Warm "More About Maya" Subsection -->
-              <div class="rounded-xl bg-paper border border-hairline p-5 space-y-2.5">
-                <h3 class="font-serif text-xl font-semibold text-charcoal">More About Maya</h3>
-                <p class="text-sm text-slate leading-relaxed">
-                  Beyond the lab, Maya wears many hats: Scientist, Educator, Mentor, Mother, Runner, and Women in Science advocate. She believes great science grows out of curiosity, kindness, open dialogue, and a supportive team culture.
+                <span class="inline-block px-2.5 py-1 rounded-md bg-burgundy-soft text-burgundy text-xs font-semibold mb-2">
+                  Principal Investigator · Senior Lecturer / Assistant Professor
+                </span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-semibold text-ink">Dr. Maya Engel</h2>
+                <p class="text-sm text-muted mt-1">
+                  Joined HUJI in October 2023 ·
+                  <a href="mailto:maya.engel@mail.huji.ac.il" class="text-burgundy hover:underline font-medium">maya.engel@mail.huji.ac.il</a>
                 </p>
               </div>
-            </div>
-          </div>
-        </div>
 
-        <!-- Current Lab Members (3-Column Grid, 1:1 Wireframes) -->
-        <div>
-          <h2 class="font-serif text-3xl font-semibold text-charcoal mb-6">Current Lab Members</h2>
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div class="space-y-3 text-sm sm:text-base text-muted leading-relaxed">
+                <p>
+                  Dr. Maya Engel leads the BioGeoChem Lab in the Department of Soil and Water Sciences at The Robert H. Smith Faculty of Agriculture, Food and Environment, The Hebrew University of Jerusalem.
+                </p>
+                <p>
+                  Prior to joining HUJI in October 2023, she completed her postdoctoral studies at <strong class="font-medium text-ink">Stanford University</strong> and <strong class="font-medium text-ink">SLAC National Accelerator Laboratory</strong> (Fendorf Group &amp; John Bargar). She earned her <strong class="font-medium text-ink">Ph.D. in Environmental Chemistry</strong> from the Hebrew University of Jerusalem (Chefetz Group) and her <strong class="font-medium text-ink">B.Sc. in Chemistry</strong> from Tel Aviv University.
+                </p>
+              </div>
 
-            <div class="bg-card rounded-xl border border-hairline p-5 space-y-4">
-              <div class="relative aspect-square w-full rounded-lg bg-stone border border-dashed border-wireborder flex flex-col items-center justify-center p-4 text-center">
-                <span class="absolute top-2.5 right-2.5 text-[10px] font-mono text-slate">1:1</span>
-                <svg class="w-7 h-7 text-slate/60 mb-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.4">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
-                  <circle cx="12" cy="7" r="4"></circle>
-                </svg>
-                <span class="text-xs font-medium text-charcoal">[Headshot: PhD Candidate]</span>
-              </div>
-              <div>
-                <h3 class="font-serif text-xl font-semibold text-charcoal">[Lab Member Name]</h3>
-                <p class="text-xs font-semibold uppercase tracking-wider text-teal mt-0.5">PhD Candidate</p>
-                <p class="text-sm text-slate mt-2">Mineral–organic matter interactions and carbon stabilization in soils.</p>
-              </div>
-            </div>
-
-            <div class="bg-card rounded-xl border border-hairline p-5 space-y-4">
-              <div class="relative aspect-square w-full rounded-lg bg-stone border border-dashed border-wireborder flex flex-col items-center justify-center p-4 text-center">
-                <span class="absolute top-2.5 right-2.5 text-[10px] font-mono text-slate">1:1</span>
-                <svg class="w-7 h-7 text-slate/60 mb-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.4">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
-                  <circle cx="12" cy="7" r="4"></circle>
-                </svg>
-                <span class="text-xs font-medium text-charcoal">[Headshot: MSc Student]</span>
-              </div>
-              <div>
-                <h3 class="font-serif text-xl font-semibold text-charcoal">[Lab Member Name]</h3>
-                <p class="text-xs font-semibold uppercase tracking-wider text-teal mt-0.5">MSc Student</p>
-                <p class="text-sm text-slate mt-2">Redox-driven mineral transformations and nutrient dynamics.</p>
-              </div>
-            </div>
-
-            <div class="bg-card rounded-xl border border-hairline p-5 space-y-4">
-              <div class="relative aspect-square w-full rounded-lg bg-stone border border-dashed border-wireborder flex flex-col items-center justify-center p-4 text-center">
-                <span class="absolute top-2.5 right-2.5 text-[10px] font-mono text-slate">1:1</span>
-                <svg class="w-7 h-7 text-slate/60 mb-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.4">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
-                  <circle cx="12" cy="7" r="4"></circle>
-                </svg>
-                <span class="text-xs font-medium text-charcoal">[Headshot: BSc Researcher]</span>
-              </div>
-              <div>
-                <h3 class="font-serif text-xl font-semibold text-charcoal">[Lab Member Name]</h3>
-                <p class="text-xs font-semibold uppercase tracking-wider text-teal mt-0.5">Undergraduate Researcher</p>
-                <p class="text-sm text-slate mt-2">Soil and water chemistry in agricultural environments.</p>
+              <!-- More About Maya Callout -->
+              <div class="rounded-xl bg-canvas border border-hairline p-5 space-y-2.5">
+                <h3 class="font-serif text-xl font-semibold text-ink">More About Maya</h3>
+                <div class="flex flex-wrap gap-2 pt-1">
+                  <span class="px-3 py-1 rounded-full bg-card border border-hairline text-xs font-medium text-ink">Scientist, Environmental Chemist, Educator</span>
+                  <span class="px-3 py-1 rounded-full bg-card border border-hairline text-xs font-medium text-ink">Mother to three young rascals</span>
+                  <span class="px-3 py-1 rounded-full bg-card border border-hairline text-xs font-medium text-ink">Runner &amp; Dancer</span>
+                  <span class="px-3 py-1 rounded-full bg-card border border-hairline text-xs font-medium text-ink">Scout at heart</span>
+                  <span class="px-3 py-1 rounded-full bg-burgundy-soft text-burgundy text-xs font-semibold">Advocate for Women in Science</span>
+                </div>
               </div>
             </div>
 
           </div>
         </div>
 
-        <!-- Alumni (Compact List) -->
-        <div class="bg-card rounded-xl border border-hairline p-6 sm:p-8">
-          <h2 class="font-serif text-2xl font-semibold text-charcoal mb-4">Alumni</h2>
+        <!-- Lab Manager -->
+        <div class="space-y-5">
+          <h2 class="font-serif text-2xl sm:text-3xl font-semibold text-ink">Lab Manager</h2>
+          <div id="group-manager-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+
+        <!-- Ph.D. Candidates -->
+        <div class="space-y-5">
+          <h2 class="font-serif text-2xl sm:text-3xl font-semibold text-ink">Ph.D. Candidates</h2>
+          <div id="group-phd-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+
+        <!-- M.Sc. Students -->
+        <div class="space-y-5">
+          <h2 class="font-serif text-2xl sm:text-3xl font-semibold text-ink">M.Sc. Students</h2>
+          <div id="group-msc-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+
+        <!-- B.Sc. Students -->
+        <div class="space-y-5">
+          <h2 class="font-serif text-2xl sm:text-3xl font-semibold text-ink">B.Sc. Students</h2>
+          <div id="group-bsc-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+
+        <!-- Alumni -->
+        <div class="bg-card rounded-2xl border border-hairline p-6 sm:p-8 space-y-4">
+          <h2 class="font-serif text-2xl font-semibold text-ink">Alumni</h2>
           <div class="divide-y divide-hairline text-sm">
             <div class="py-3 flex flex-col sm:flex-row sm:items-center justify-between gap-1">
-              <div><span class="font-medium text-charcoal">[Alumni Name]</span> <span class="text-slate">· MSc Graduate (Year)</span></div>
-              <span class="text-slate text-xs sm:text-sm">Current role / institution</span>
+              <div>
+                <span class="font-semibold text-ink">Bar Asraf</span>
+                <span class="text-muted"> · M.Sc. Graduate</span>
+              </div>
+              <span class="text-xs font-medium text-teal bg-teal-soft px-2.5 py-1 rounded-full self-start sm:self-auto">Defended January 2026</span>
             </div>
-            <div class="py-3 flex flex-col sm:flex-row sm:items-center justify-between gap-1">
-              <div><span class="font-medium text-charcoal">[Alumni Name]</span> <span class="text-slate">· BSc Research Student (Year)</span></div>
-              <span class="text-slate text-xs sm:text-sm">Current role / institution</span>
-            </div>
+          </div>
+          <div class="rounded-lg bg-wirefill/70 border border-dashed border-wireborder px-4 py-3 text-xs text-muted">
+            Additional alumni entries will be added here as lab members graduate.
           </div>
         </div>
 
@@ -673,46 +708,55 @@
     <section id="page-publications" class="page-view hidden">
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 space-y-8">
 
-        <div class="space-y-3">
-          <p class="text-xs font-semibold uppercase tracking-wider text-teal">Publications</p>
-          <h1 class="font-serif text-4xl sm:text-5xl font-semibold text-charcoal">Selected Publications</h1>
-        </div>
-
-        <!-- Subtle Ready-to-Fill Banner -->
-        <div class="rounded-xl bg-stone border border-hairline px-5 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-          <p class="text-sm text-slate">
-            <span class="font-semibold text-charcoal">Publication List Slot:</span> Ready to drop in the full publication list via Pages CMS or Google Scholar export.
-          </p>
-          <a
-            href="#scholar-full"
-            onclick="event.preventDefault(); showToast('Connect full Google Scholar link');"
-            class="text-xs font-semibold text-burgundy hover:underline shrink-0"
-          >
-            Google Scholar →
-          </a>
+        <!-- Header + Profile Links -->
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+          <div class="space-y-2">
+            <p class="text-xs font-semibold uppercase tracking-wider text-teal">Publications</p>
+            <h1 class="font-serif text-4xl sm:text-5xl font-semibold text-ink">Selected Publications</h1>
+          </div>
+          <div class="flex flex-wrap items-center gap-2">
+            <a
+              href="https://scholar.google.com/citations?user=d_bhZxkAAAAJ&hl=en"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="px-3.5 py-2 rounded-lg bg-burgundy hover:bg-burgundy-hover text-white text-xs font-medium transition-colors"
+            >
+              Google Scholar ↗
+            </a>
+            <a
+              href="https://orcid.org/0000-0002-0100-9037"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="px-3.5 py-2 rounded-lg bg-card hover:bg-wirefill border border-hairline text-ink text-xs font-medium transition-colors"
+            >
+              ORCID ↗
+            </a>
+          </div>
         </div>
 
         <!-- Search & Year Filter Pills -->
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <div class="relative w-full sm:w-72">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div class="relative w-full md:w-72">
             <input
               type="text"
               id="pub-search-input"
               oninput="handlePubSearch(this.value)"
               placeholder="Search title, author, journal..."
-              class="w-full pl-9 pr-3 py-2 rounded-lg bg-card border border-hairline text-sm text-charcoal placeholder:text-slate/70 focus:outline-none focus:border-teal transition-colors"
+              class="w-full pl-9 pr-3 py-2 rounded-lg bg-card border border-hairline text-sm text-ink placeholder:text-muted/70 focus:outline-none focus:border-teal transition-colors"
             />
-            <svg class="w-4 h-4 text-slate absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.75">
+            <svg class="w-4 h-4 text-muted absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.75">
               <circle cx="11" cy="11" r="7"></circle>
               <path stroke-linecap="round" d="M21 21l-4.35-4.35"></path>
             </svg>
           </div>
 
-          <div class="flex flex-wrap items-center gap-2" role="tablist" aria-label="Filter publications">
+          <div class="flex flex-wrap items-center gap-2" role="tablist" aria-label="Filter publications by year">
             <button type="button" data-pub-filter="all" onclick="filterPublications('all')" class="pub-filter-btn px-3 py-1.5 rounded-lg text-xs font-medium transition-colors">All</button>
-            <button type="button" data-pub-filter="featured" onclick="filterPublications('featured')" class="pub-filter-btn px-3 py-1.5 rounded-lg text-xs font-medium transition-colors">Featured</button>
             <button type="button" data-pub-filter="2026" onclick="filterPublications('2026')" class="pub-filter-btn px-3 py-1.5 rounded-lg text-xs font-medium transition-colors">2026</button>
-            <button type="button" data-pub-filter="2025" onclick="filterPublications('2025')" class="pub-filter-btn px-3 py-1.5 rounded-lg text-xs font-medium transition-colors">2025</button>
+            <button type="button" data-pub-filter="2024" onclick="filterPublications('2024')" class="pub-filter-btn px-3 py-1.5 rounded-lg text-xs font-medium transition-colors">2024</button>
+            <button type="button" data-pub-filter="2023" onclick="filterPublications('2023')" class="pub-filter-btn px-3 py-1.5 rounded-lg text-xs font-medium transition-colors">2023</button>
+            <button type="button" data-pub-filter="2022" onclick="filterPublications('2022')" class="pub-filter-btn px-3 py-1.5 rounded-lg text-xs font-medium transition-colors">2022</button>
+            <button type="button" data-pub-filter="2021-earlier" onclick="filterPublications('2021-earlier')" class="pub-filter-btn px-3 py-1.5 rounded-lg text-xs font-medium transition-colors">2021 &amp; Earlier</button>
           </div>
         </div>
 
@@ -721,21 +765,45 @@
           <!-- Populated by JS -->
         </div>
 
+        <!-- Clean Dashed Banner at Bottom -->
+        <div class="rounded-xl bg-wirefill border border-dashed border-wireborder p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <p class="text-sm text-muted">
+            <strong class="font-semibold text-ink">Space reserved for additional publications</strong> — full list synced with Google Scholar &amp; ORCID.
+          </p>
+          <a
+            href="https://scholar.google.com/citations?user=d_bhZxkAAAAJ&hl=en"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-xs font-semibold text-burgundy hover:underline shrink-0"
+          >
+            View full record →
+          </a>
+        </div>
+
       </div>
     </section>
 
     <!-- =================================================================== -->
-    <!-- PAGE 5: NEWS                                                        -->
+    <!-- PAGE 5: NEWS & LAB LIFE                                             -->
     <!-- =================================================================== -->
     <section id="page-news" class="page-view hidden">
       <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 space-y-10">
 
-        <div class="max-w-3xl space-y-3">
-          <p class="text-xs font-semibold uppercase tracking-wider text-burgundy">Lab Life</p>
-          <h1 class="font-serif text-4xl sm:text-5xl font-semibold text-charcoal">News &amp; Milestones</h1>
-          <p class="text-base text-slate">
-            Updates on grants, conferences, lab milestones, and team activities.
-          </p>
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+          <div class="max-w-2xl space-y-3">
+            <p class="text-xs font-semibold uppercase tracking-wider text-burgundy">Lab Life &amp; Outreach</p>
+            <h1 class="font-serif text-4xl sm:text-5xl font-semibold text-ink">News &amp; Lab Life</h1>
+            <p class="text-base text-muted">
+              Milestones, conferences, defenses, field courses, and team outings from the BioGeoChem Lab.
+            </p>
+          </div>
+
+          <!-- News Filter Pills -->
+          <div class="flex flex-wrap items-center gap-2" role="tablist" aria-label="Filter news">
+            <button type="button" data-news-filter="all" onclick="filterNews('all')" class="news-filter-btn px-3.5 py-1.5 rounded-lg text-xs font-medium transition-colors">All</button>
+            <button type="button" data-news-filter="Lab Life" onclick="filterNews('Lab Life')" class="news-filter-btn px-3.5 py-1.5 rounded-lg text-xs font-medium transition-colors">Lab Life</button>
+            <button type="button" data-news-filter="Conferences" onclick="filterNews('Conferences')" class="news-filter-btn px-3.5 py-1.5 rounded-lg text-xs font-medium transition-colors">Conferences &amp; Talks</button>
+          </div>
         </div>
 
         <div id="news-feed" class="space-y-6">
@@ -753,51 +821,72 @@
 
         <div class="max-w-3xl space-y-3">
           <p class="text-xs font-semibold uppercase tracking-wider text-teal">Education</p>
-          <h1 class="font-serif text-4xl sm:text-5xl font-semibold text-charcoal">Teaching &amp; Mentoring</h1>
+          <h1 class="font-serif text-4xl sm:text-5xl font-semibold text-ink">Teaching &amp; Mentoring</h1>
         </div>
 
         <!-- Mentoring Philosophy Card -->
         <div class="bg-card rounded-2xl border border-hairline p-6 sm:p-10 space-y-4">
-          <h2 class="font-serif text-2xl sm:text-3xl font-semibold text-charcoal">Mentoring Philosophy</h2>
-          <p class="text-sm sm:text-base text-slate leading-relaxed">
-            Mentoring is central to everything we do. We aim to foster an inclusive, intellectually curious, and supportive environment where students develop independent scientific thinking, strong analytical judgment, and clear communication skills.
+          <h2 class="font-serif text-2xl sm:text-3xl font-semibold text-ink">Mentoring Philosophy</h2>
+          <p class="text-sm sm:text-base text-muted leading-relaxed">
+            As an environmental chemist and educator, Dr. Maya Engel views mentorship as a cornerstone of scientific discovery. Our lab fosters an inclusive, collaborative environment built on hands-on experimentation, independent critical thinking, and open interdisciplinary dialogue.
           </p>
-          <p class="text-sm sm:text-base text-slate leading-relaxed">
-            We value both scientific rigor and personal well-being, supporting trainees as they prepare for diverse careers in academia, environmental research, industry, and public policy.
+          <p class="text-sm sm:text-base text-muted leading-relaxed">
+            We are deeply committed to supporting every student's individual trajectory—from undergraduate project students taking their first steps at the bench to Ph.D. candidates developing independent research programs—and to actively advocating for <strong class="font-medium text-ink">Women in Science</strong> across academia and environmental fields.
           </p>
         </div>
 
-        <!-- Courses Taught at HUJI -->
-        <div class="space-y-5">
-          <h2 class="font-serif text-3xl font-semibold text-charcoal">Courses at the Faculty of Agriculture</h2>
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div class="bg-card rounded-xl border border-hairline p-6 space-y-2">
-              <span class="text-xs font-semibold uppercase tracking-wider text-burgundy">Graduate &amp; BSc</span>
-              <h3 class="font-serif text-xl font-semibold text-charcoal">Soil &amp; Environmental Biogeochemistry</h3>
-              <p class="text-sm text-slate leading-relaxed">Core principles governing elemental cycling, mineral–organic interactions, and redox chemistry in terrestrial systems.</p>
+        <!-- Courses Taught & Field Course Highlight -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <!-- Courses Placeholder Card -->
+          <div class="lg:col-span-7 bg-card rounded-2xl border border-hairline p-6 sm:p-8 flex flex-col justify-between space-y-5">
+            <div class="space-y-3">
+              <p class="text-xs font-semibold uppercase tracking-wider text-burgundy">Faculty of Agriculture · HUJI</p>
+              <h2 class="font-serif text-2xl sm:text-3xl font-semibold text-ink">Courses Taught</h2>
+              <p class="text-sm text-muted leading-relaxed">
+                Undergraduate and graduate instruction in soil chemistry, environmental biogeochemistry, and analytical laboratory methods within the Department of Soil and Water Sciences.
+              </p>
             </div>
-            <div class="bg-card rounded-xl border border-hairline p-6 space-y-2">
-              <span class="text-xs font-semibold uppercase tracking-wider text-burgundy">Laboratory Course</span>
-              <h3 class="font-serif text-xl font-semibold text-charcoal">Analytical Soil &amp; Water Chemistry</h3>
-              <p class="text-sm text-slate leading-relaxed">Hands-on introduction to experimental design, environmental measurements, and quantitative data interpretation.</p>
+            <div class="rounded-xl bg-wirefill border border-dashed border-wireborder p-5 text-sm text-muted">
+              <strong class="font-semibold text-ink block mb-1">Course Directory Slot</strong>
+              HUJI course numbers &amp; syllabi links to be added here.
             </div>
-            <div class="bg-card rounded-xl border border-hairline p-6 space-y-2">
-              <span class="text-xs font-semibold uppercase tracking-wider text-burgundy">Field Course</span>
-              <h3 class="font-serif text-xl font-semibold text-charcoal">Field Biogeochemistry</h3>
-              <p class="text-sm text-slate leading-relaxed">Field-based sampling, environmental observation, and collaborative geochemical analysis.</p>
+          </div>
+
+          <!-- Eilat Field Course Highlight -->
+          <div class="lg:col-span-5 bg-card rounded-2xl border border-hairline overflow-hidden flex flex-col">
+            <div class="relative aspect-[16/10] w-full bg-wirefill border-b border-dashed border-wireborder flex flex-col items-center justify-center p-5 text-center">
+              <span class="absolute top-3 right-3 text-[11px] font-mono text-muted">16:10</span>
+              <svg class="w-7 h-7 text-muted/70 mb-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.4">
+                <rect x="3" y="3" width="18" height="18" rx="2"></rect>
+                <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                <path d="M21 15l-5-5L5 21"></path>
+              </svg>
+              <span class="text-xs font-medium text-ink">Eilat Field Course</span>
+              <span class="text-[11px] font-mono text-muted mt-0.5">images/teaching-eilat-field.jpg</span>
+            </div>
+            <div class="p-6 space-y-2 flex-grow">
+              <span class="inline-block px-2.5 py-0.5 rounded-md bg-teal-soft text-teal text-xs font-semibold">Field Experience</span>
+              <h3 class="font-serif text-xl font-semibold text-ink">Field Course in Eilat</h3>
+              <p class="text-sm text-muted leading-relaxed">
+                Hands-on field sampling, geochemical observation, and collaborative student learning connecting classroom theory with real aquatic and arid-zone systems.
+              </p>
             </div>
           </div>
         </div>
 
-        <!-- Natural Link to Join Us -->
-        <div class="pt-2">
-          <button
-            type="button"
-            onclick="navigateTo('join')"
-            class="inline-flex items-center gap-2 text-sm font-semibold text-burgundy hover:text-burgundy-hover transition-colors"
+        <!-- Smooth CTA to Join Us -->
+        <div class="rounded-2xl bg-card border border-hairline p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div>
+            <h3 class="font-serif text-2xl font-semibold text-ink">Interested in training with us?</h3>
+            <p class="text-sm text-muted mt-1">Explore current M.Sc., Ph.D., B.Sc., and postdoctoral opportunities in the lab.</p>
+          </div>
+          <a
+            href="#join"
+            onclick="navigateTo('join', event)"
+            class="px-5 py-3 rounded-lg bg-burgundy hover:bg-burgundy-hover text-white text-sm font-medium transition-colors shrink-0 self-start sm:self-auto"
           >
-            Interested in graduate or undergraduate research in the lab? Visit Join Us →
-          </button>
+            Visit Join Us →
+          </a>
         </div>
 
       </div>
@@ -809,69 +898,103 @@
     <section id="page-join" class="page-view hidden">
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 space-y-10">
 
-        <!-- Warm Call -->
+        <!-- Authentic Pitch -->
         <div class="space-y-3">
           <p class="text-xs font-semibold uppercase tracking-wider text-burgundy">Opportunities</p>
-          <h1 class="font-serif text-4xl sm:text-5xl font-semibold text-charcoal">Join the BioGeoChem Lab</h1>
-          <p class="text-base sm:text-lg text-slate leading-relaxed">
-            We are always happy to hear from curious, independent, and motivated MSc, PhD, postdoctoral, and undergraduate candidates excited about soil and environmental biogeochemistry.
+          <h1 class="font-serif text-4xl sm:text-5xl font-semibold text-ink">Passionate about Environmental Science?</h1>
+          <p class="text-base sm:text-lg text-muted leading-relaxed">
+            If you're creative, independent, and dedicated—and enjoy thinking, learning, and hands-on exploration—we'd love to have you join our journey!
           </p>
         </div>
 
-        <!-- Current Opportunities Box (High-Level / Anti-Scooping) -->
-        <div class="bg-card rounded-2xl border border-hairline p-6 sm:p-8 space-y-4">
+        <!-- Highlighted Current Opening -->
+        <div class="bg-card rounded-2xl border-2 border-burgundy/25 p-6 sm:p-8 space-y-4 shadow-sm">
           <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-burgundy-soft text-burgundy text-xs font-semibold">
-            <span class="w-1.5 h-1.5 rounded-full bg-burgundy"></span>
-            Current Opportunities
+            <span class="w-2 h-2 rounded-full bg-burgundy"></span>
+            Current Opening
           </div>
-          <h2 class="font-serif text-2xl sm:text-3xl font-semibold text-charcoal">
-            Open MSc / PhD Positions in Soil &amp; Environmental Biogeochemistry
+          <h2 class="font-serif text-2xl sm:text-3xl font-semibold text-ink">
+            Open M.Sc. Position — Phosphorus Recovery &amp; Vivianite Precipitation
           </h2>
-          <p class="text-sm sm:text-base text-slate leading-relaxed">
-            We are recruiting motivated graduate students to join our team at the Hebrew University of Jerusalem (Rehovot campus) to work on interdisciplinary projects at the intersection of soil chemistry, mineral–organic interactions, redox processes, and nutrient cycling. Specific research directions are tailored together with each student based on shared interests and background.
+          <p class="text-sm sm:text-base text-muted leading-relaxed">
+            We are seeking a motivated M.Sc. student to join our group in Rehovot to investigate sustainable phosphorus recovery through iron-phosphate (vivianite) mineral precipitation in complex aqueous systems. This interdisciplinary project bridges environmental chemistry, mineral characterization, and resource sustainability.
           </p>
           <p class="text-xs font-medium text-teal pt-1">
-            Relevant backgrounds: Chemistry, Soil &amp; Water Sciences, Environmental Sciences, Earth Sciences, or related fields.
+            Relevant backgrounds: Chemistry, Soil &amp; Water Sciences, Environmental Sciences, Earth Sciences, Chemical Engineering, or related fields.
           </p>
+        </div>
+
+        <!-- General Inquiries Cards -->
+        <div class="space-y-4">
+          <h2 class="font-serif text-2xl font-semibold text-ink">General Inquiries</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="bg-card rounded-xl border border-hairline p-5 space-y-1.5">
+              <h3 class="font-serif text-lg font-semibold text-ink">Prospective Ph.D. Students</h3>
+              <p class="text-xs sm:text-sm text-muted leading-relaxed">We welcome inquiries from curious candidates interested in soil biogeochemistry, mineral–organic interfaces, and elemental cycling.</p>
+            </div>
+            <div class="bg-card rounded-xl border border-hairline p-5 space-y-1.5">
+              <h3 class="font-serif text-lg font-semibold text-ink">Prospective M.Sc. Students</h3>
+              <p class="text-xs sm:text-sm text-muted leading-relaxed">Reach out to discuss ongoing themes or tailor a thesis project aligned with your scientific interests.</p>
+            </div>
+            <div class="bg-card rounded-xl border border-hairline p-5 space-y-1.5">
+              <h3 class="font-serif text-lg font-semibold text-ink">Postdoctoral Researchers</h3>
+              <p class="text-xs sm:text-sm text-muted leading-relaxed">We are happy to discuss collaborative research ideas and fellowship applications for incoming postdocs.</p>
+            </div>
+            <div class="bg-card rounded-xl border border-hairline p-5 space-y-1.5">
+              <h3 class="font-serif text-lg font-semibold text-ink">B.Sc. Project Students</h3>
+              <p class="text-xs sm:text-sm text-muted leading-relaxed">HUJI undergraduates looking for hands-on lab or field research experience are encouraged to get in touch.</p>
+            </div>
+          </div>
         </div>
 
         <!-- How to Apply Checklist + Copy Email -->
         <div class="bg-card rounded-2xl border border-hairline p-6 sm:p-8 space-y-6">
-          <h2 class="font-serif text-2xl font-semibold text-charcoal">How to Apply</h2>
-          <ul class="space-y-3 text-sm sm:text-base text-slate">
+          <h2 class="font-serif text-2xl font-semibold text-ink">How to Apply</h2>
+          <ul class="space-y-3 text-sm sm:text-base text-muted">
             <li class="flex items-start gap-3">
               <span class="w-6 h-6 rounded-full bg-teal-soft text-teal text-xs font-semibold flex items-center justify-center shrink-0 mt-0.5">1</span>
-              <span><strong class="text-charcoal font-medium">Your CV</strong> — summarizing your academic background and any prior research or lab experience.</span>
+              <span><strong class="text-ink font-medium">Your CV</strong> — highlighting your academic background and any research or lab experience.</span>
             </li>
             <li class="flex items-start gap-3">
               <span class="w-6 h-6 rounded-full bg-teal-soft text-teal text-xs font-semibold flex items-center justify-center shrink-0 mt-0.5">2</span>
-              <span><strong class="text-charcoal font-medium">A brief note on your interests</strong> — a short paragraph about what draws you to soil biogeochemistry and our lab.</span>
+              <span><strong class="text-ink font-medium">A brief statement of research interests</strong> — a short paragraph about what excites you about biogeochemistry and our lab.</span>
             </li>
             <li class="flex items-start gap-3">
               <span class="w-6 h-6 rounded-full bg-teal-soft text-teal text-xs font-semibold flex items-center justify-center shrink-0 mt-0.5">3</span>
-              <span><strong class="text-charcoal font-medium">Reach out by email</strong> — send your materials to Dr. Maya Engel to start a conversation.</span>
+              <span><strong class="text-ink font-medium">Unofficial transcript</strong> — if you are applying as a prospective B.Sc., M.Sc., or Ph.D. student.</span>
             </li>
           </ul>
 
-          <div class="pt-4 border-t border-hairline flex flex-wrap items-center gap-3">
-            <a
-              href="mailto:maya.engel@mail.huji.ac.il"
-              class="px-4 py-2.5 rounded-lg bg-burgundy hover:bg-burgundy-hover text-white text-sm font-medium transition-colors"
-            >
-              maya.engel@mail.huji.ac.il
-            </a>
-            <button
-              type="button"
-              id="copy-email-btn"
-              onclick="copyEmailAddress()"
-              class="px-4 py-2.5 rounded-lg bg-paper hover:bg-stone border border-hairline text-charcoal text-sm font-medium transition-colors inline-flex items-center gap-2"
-            >
-              <svg class="w-4 h-4 text-slate" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.75">
-                <rect x="9" y="9" width="13" height="13" rx="2"></rect>
-                <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
-              </svg>
-              <span id="copy-email-label">Copy Email</span>
-            </button>
+          <div class="pt-5 border-t border-hairline flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <p class="text-xs uppercase tracking-wider font-semibold text-muted">Send applications &amp; inquiries to</p>
+              <a
+                href="mailto:maya.engel@mail.huji.ac.il"
+                class="font-serif text-xl sm:text-2xl font-semibold text-burgundy hover:underline"
+              >
+                maya.engel@mail.huji.ac.il
+              </a>
+            </div>
+            <div class="flex flex-wrap items-center gap-2.5">
+              <a
+                href="mailto:maya.engel@mail.huji.ac.il"
+                class="px-4 py-2.5 rounded-lg bg-burgundy hover:bg-burgundy-hover text-white text-sm font-medium transition-colors"
+              >
+                Email Maya
+              </a>
+              <button
+                type="button"
+                id="copy-email-btn"
+                onclick="copyEmailAddress()"
+                class="px-4 py-2.5 rounded-lg bg-canvas hover:bg-wirefill border border-hairline text-ink text-sm font-medium transition-colors inline-flex items-center gap-2"
+              >
+                <svg class="w-4 h-4 text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.75">
+                  <rect x="9" y="9" width="13" height="13" rx="2"></rect>
+                  <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
+                </svg>
+                <span id="copy-email-label">Copy Email</span>
+              </button>
+            </div>
           </div>
         </div>
 
@@ -883,46 +1006,50 @@
   <!-- ===================================================================== -->
   <!-- GLOBAL FOOTER                                                         -->
   <!-- ===================================================================== -->
-  <footer class="bg-stone border-t border-hairline mt-auto">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+  <footer class="bg-wirefill border-t border-hairline mt-auto">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
 
-        <!-- Left: Logo & HUJI Affiliation -->
+        <!-- Left: Full Institutional Affiliation -->
         <div class="md:col-span-5 space-y-3">
-          <img
-            src="image_e55dfd.png"
-            alt="BioGeoChem Cycling Lab Logo"
-            class="h-9 w-auto object-contain"
-            onerror="this.style.display='none';"
-          />
-          <p class="text-xs text-slate leading-relaxed">
-            <strong class="text-charcoal font-medium">BioGeoChem Lab · Dr. Maya Engel</strong><br />
-            Department of Soil and Water Sciences, The Robert H. Smith Faculty of Agriculture, Food and Environment, The Hebrew University of Jerusalem, Rehovot, Israel
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-card border border-dashed border-wireborder text-[11px] font-mono text-muted">
+            images/logo.png
+          </div>
+          <p class="text-xs sm:text-sm text-muted leading-relaxed">
+            <strong class="text-ink font-semibold block">The BioGeoChem Lab · Dr. Maya Engel</strong>
+            Department of Soil and Water Sciences<br />
+            The Robert H. Smith Faculty of Agriculture, Food and Environment<br />
+            The Hebrew University of Jerusalem · Rehovot, Israel
           </p>
         </div>
 
-        <!-- Middle: Quick Links -->
-        <div class="md:col-span-3 space-y-2">
-          <h3 class="text-xs font-semibold uppercase tracking-wider text-charcoal">Navigation</h3>
-          <ul class="space-y-1.5 text-xs text-slate">
-            <li><button type="button" onclick="navigateTo('research')" class="hover:text-burgundy transition-colors">Research</button></li>
-            <li><button type="button" onclick="navigateTo('group')" class="hover:text-burgundy transition-colors">The Group</button></li>
-            <li><button type="button" onclick="navigateTo('publications')" class="hover:text-burgundy transition-colors">Publications</button></li>
-            <li><button type="button" onclick="navigateTo('join')" class="hover:text-burgundy font-medium text-burgundy transition-colors">Join Us</button></li>
+        <!-- Middle: Navigation -->
+        <div class="md:col-span-3 space-y-2.5">
+          <h3 class="text-xs font-semibold uppercase tracking-wider text-ink">Site Navigation</h3>
+          <ul class="space-y-1.5 text-xs sm:text-sm text-muted">
+            <li><a href="#home" onclick="navigateTo('home', event)" class="hover:text-burgundy transition-colors">Home</a></li>
+            <li><a href="#research" onclick="navigateTo('research', event)" class="hover:text-burgundy transition-colors">Research</a></li>
+            <li><a href="#group" onclick="navigateTo('group', event)" class="hover:text-burgundy transition-colors">The Group</a></li>
+            <li><a href="#publications" onclick="navigateTo('publications', event)" class="hover:text-burgundy transition-colors">Publications</a></li>
+            <li><a href="#news" onclick="navigateTo('news', event)" class="hover:text-burgundy transition-colors">News &amp; Lab Life</a></li>
+            <li><a href="#join" onclick="navigateTo('join', event)" class="font-semibold text-burgundy hover:underline">Join Us →</a></li>
           </ul>
         </div>
 
-        <!-- Right: Academic Profiles & Contact -->
-        <div class="md:col-span-4 space-y-2">
-          <h3 class="text-xs font-semibold uppercase tracking-wider text-charcoal">Profiles &amp; Contact</h3>
-          <div class="flex flex-wrap gap-x-4 gap-y-1.5 text-xs text-slate">
-            <a href="#scholar" onclick="event.preventDefault(); showToast('Connect Google Scholar URL');" class="hover:text-burgundy transition-colors">Google Scholar</a>
-            <a href="#orcid" onclick="event.preventDefault(); showToast('Connect ORCID URL');" class="hover:text-burgundy transition-colors">ORCID</a>
-            <a href="#researchgate" onclick="event.preventDefault(); showToast('Connect ResearchGate URL');" class="hover:text-burgundy transition-colors">ResearchGate</a>
-            <a href="#huji-dept" onclick="event.preventDefault(); showToast('Connect HUJI Department URL');" class="hover:text-burgundy transition-colors">HUJI Dept</a>
+        <!-- Right: Verified External Links & Contact -->
+        <div class="md:col-span-4 space-y-2.5">
+          <h3 class="text-xs font-semibold uppercase tracking-wider text-ink">Academic Profiles &amp; Contact</h3>
+          <div class="flex flex-wrap gap-x-4 gap-y-2 text-xs sm:text-sm text-muted">
+            <a href="https://scholar.google.com/citations?user=d_bhZxkAAAAJ&hl=en" target="_blank" rel="noopener noreferrer" class="hover:text-burgundy transition-colors">Google Scholar ↗</a>
+            <a href="https://orcid.org/0000-0002-0100-9037" target="_blank" rel="noopener noreferrer" class="hover:text-burgundy transition-colors">ORCID ↗</a>
+            <a href="https://www.researchgate.net/profile/Maya-Engel-3" target="_blank" rel="noopener noreferrer" class="hover:text-burgundy transition-colors">ResearchGate ↗</a>
+            <a href="https://soilandwater.agri.huji.ac.il/people/maya-engel" target="_blank" rel="noopener noreferrer" class="hover:text-burgundy transition-colors">HUJI Dept. Page ↗</a>
+            <a href="https://nano.huji.ac.il/people/maya-engel" target="_blank" rel="noopener noreferrer" class="hover:text-burgundy transition-colors">HUJI Nano Center ↗</a>
+            <a href="https://www.yissum.co.il/services/biogeochem-lab/" target="_blank" rel="noopener noreferrer" class="hover:text-burgundy transition-colors">Yissum ↗</a>
           </div>
-          <p class="text-xs text-slate pt-1">
-            <a href="mailto:maya.engel@mail.huji.ac.il" class="hover:text-burgundy underline underline-offset-2">
+          <p class="text-xs sm:text-sm text-muted pt-2">
+            Email:
+            <a href="mailto:maya.engel@mail.huji.ac.il" class="text-ink font-medium hover:text-burgundy underline underline-offset-2">
               maya.engel@mail.huji.ac.il
             </a>
           </p>
@@ -933,11 +1060,11 @@
   </footer>
 
   <!-- ===================================================================== -->
-  <!-- LIGHTBOX MODAL (LAB SNAPSHOTS)                                        -->
+  <!-- LIGHTBOX MODAL (EXPERIMENTS SNEAK PEEK)                               -->
   <!-- ===================================================================== -->
   <div
     id="lightbox-modal"
-    class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-charcoal/70 backdrop-blur-xs"
+    class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-ink/70 backdrop-blur-xs"
     role="dialog"
     aria-modal="true"
     aria-labelledby="lightbox-title"
@@ -946,13 +1073,13 @@
     <div class="bg-card rounded-2xl border border-hairline max-w-xl w-full p-6 shadow-xl">
       <div class="flex items-start justify-between gap-4 mb-4">
         <div>
-          <p class="text-xs font-semibold uppercase tracking-wider text-teal">Lab Snapshot</p>
-          <h3 id="lightbox-title" class="font-serif text-2xl font-semibold text-charcoal mt-0.5"></h3>
+          <p class="text-xs font-semibold uppercase tracking-wider text-teal">A Sneak Peek Into Our Experiments</p>
+          <h3 id="lightbox-title" class="font-serif text-2xl font-semibold text-ink mt-0.5"></h3>
         </div>
         <button
           type="button"
           onclick="closeLightbox()"
-          class="p-1.5 rounded-lg text-slate hover:text-charcoal hover:bg-stone transition-colors"
+          class="p-1.5 rounded-lg text-muted hover:text-ink hover:bg-wirefill transition-colors"
           aria-label="Close modal"
         >
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.75">
@@ -961,22 +1088,22 @@
         </button>
       </div>
 
-      <div class="relative aspect-[4/3] w-full rounded-xl bg-stone border border-dashed border-wireborder flex flex-col items-center justify-center p-6 text-center mb-4">
-        <span class="absolute top-3 right-3 text-[11px] font-mono text-slate">4:3</span>
-        <p id="lightbox-slot-label" class="text-sm font-medium text-charcoal"></p>
-        <p class="text-xs text-slate mt-1">Drop in high-resolution lab photo here</p>
+      <div class="relative aspect-[4/3] w-full rounded-xl bg-wirefill border border-dashed border-wireborder flex flex-col items-center justify-center p-6 text-center mb-4">
+        <span class="absolute top-3 right-3 text-[11px] font-mono text-muted">4:3</span>
+        <p id="lightbox-filename" class="text-xs font-mono font-medium text-ink"></p>
+        <p class="text-xs text-muted mt-1">Place real lab photo in the images/ folder</p>
       </div>
 
-      <p id="lightbox-caption" class="text-sm text-slate leading-relaxed"></p>
+      <p id="lightbox-caption" class="text-sm text-muted leading-relaxed"></p>
     </div>
   </div>
 
   <!-- ===================================================================== -->
-  <!-- TOAST NOTIFICATION (REPLACES ALERT/CONFIRM)                           -->
+  <!-- TOAST NOTIFICATION                                                    -->
   <!-- ===================================================================== -->
   <div
     id="toast"
-    class="fixed bottom-5 right-5 z-50 hidden items-center gap-2.5 px-4 py-2.5 rounded-lg bg-charcoal text-white text-xs font-medium shadow-lg"
+    class="fixed bottom-5 right-5 z-50 hidden items-center gap-2.5 px-4 py-2.5 rounded-lg bg-ink text-white text-xs font-medium shadow-lg"
     role="status"
     aria-live="polite"
   >
@@ -985,117 +1112,346 @@
   </div>
 
   <!-- ===================================================================== -->
-  <!-- CLIENT-SIDE ROUTING, DATA & INTERACTIONS                              -->
+  <!-- CLIENT-SIDE DATA, ROUTING & INTERACTIONS                              -->
   <!-- ===================================================================== -->
   <script>
-    // 1. Lab Snapshots (Concise, Non-Revealing Captions)
-    const SNAPSHOTS = [
+    // -----------------------------------------------------------------------
+    // 1. EXPERIMENTS SNEAK PEEK DATA (6 REAL LAB TILES)
+    // -----------------------------------------------------------------------
+    const EXPERIMENTS = [
       {
-        title: 'Microscopy & Mineral Surfaces',
-        slotLabel: '[Photo: Microscopy / Mineral Surfaces]',
-        caption: 'Exploring soil minerals and organic associations across the nano- to micro-scale.',
+        title: 'Soil Sampling & Column Work',
+        filename: 'images/exp-soil-columns.jpg',
+        caption: 'Field soil sampling and controlled laboratory column experiments linking natural soil structure with geochemical transport.',
       },
       {
-        title: 'Anaerobic Lab Work',
-        slotLabel: '[Photo: Anaerobic Lab Work]',
-        caption: 'Controlled oxygen-free experimentation for studying redox-active soil systems.',
+        title: 'Natural Ferrihydrite Nanoparticles (TEM)',
+        filename: 'images/exp-ferrihydrite-tem.jpg',
+        caption: 'Transmission electron microscopy (TEM) imaging of natural ferrihydrite nanoparticles and mineral–organic associations.',
       },
       {
-        title: 'Field & Soil Systems',
-        slotLabel: '[Photo: Field & Soil Systems]',
-        caption: 'Connecting laboratory biogeochemistry with natural and agricultural landscapes.',
+        title: 'Synthesizing Ferrihydrite',
+        filename: 'images/exp-ferrihydrite-synth.jpg',
+        caption: 'Benchtop synthesis of iron (oxyhydr)oxide minerals for controlled biogeochemical and surface-interaction studies.',
+      },
+      {
+        title: 'TAM IV Calorimetry',
+        filename: 'images/exp-tam-calorimeter.jpg',
+        caption: 'Isothermal calorimetry measurements probing reaction energetics and interfacial processes in real time.',
+      },
+      {
+        title: 'Anaerobic Chamber Work',
+        filename: 'images/exp-anaerobic-chamber.jpg',
+        caption: 'Conducting oxygen-free experiments inside our COY anaerobic chamber to investigate redox-sensitive soil and sediment systems.',
+      },
+      {
+        title: 'Ferrozine Iron Assay',
+        filename: 'images/exp-ferrozine-assay.jpg',
+        caption: 'Colorimetric ferrozine assays quantifying iron speciation and redox transformations across experimental samples.',
       },
     ];
 
-    // 2. High-Level News Milestones (Shared Between Home & News Pages)
+    // -----------------------------------------------------------------------
+    // 2. LAB MEMBERS DATA (REAL CURRENT GROUP)
+    // -----------------------------------------------------------------------
+    const GROUP_MEMBERS = {
+      manager: [
+        {
+          name: 'Dr. Gili Solomon',
+          role: 'Lab Manager',
+          email: 'gila.solomon@mail.huji.ac.il',
+          education: 'Ph.D. Biochemistry & Food Science (HUJI); M.Sc. Food Science (Rutgers); B.Sc. Life Sciences (TAU).',
+          focus: '',
+          quote: 'I love sports, traveling around the world, gardening and reading.',
+          photo: 'images/member-gili.jpg',
+        },
+      ],
+      phd: [
+        {
+          name: 'Roee Gothelf',
+          role: 'Ph.D. Candidate · Since Oct 2025',
+          email: 'roee.gothelf@mail.huji.ac.il',
+          education: 'M.Sc. Soil & Water Sciences, B.Sc. Plant Sciences (HUJI).',
+          focus: 'Fate of mineral-associated organic matter upon terrestrial-to-aquatic transitions.',
+          quote: 'I love climbing, hiking, and learning new languages.',
+          photo: 'images/member-roee.jpg',
+        },
+        {
+          name: 'Zenawi Tadesse',
+          role: 'Ph.D. Candidate · Since Jan 2025',
+          email: 'zenawi.tadesse@mail.huji.ac.il',
+          education: 'M.Sc. Natural Resources & Environmental Quality Sciences (HUJI); B.Sc. Civil Engineering (Bahir Dar Univ.).',
+          focus: 'Silicate mineral weathering and soil inorganic & organic carbon storage.',
+          quote: 'I love the beauty of diverse cultures, exploring local traditions, and the excitement that comes with stepping out of my comfort zone. I also enjoy swimming and hiking.',
+          photo: 'images/member-zenawi.jpg',
+        },
+        {
+          name: 'Yinyin Zheng',
+          role: 'Ph.D. Candidate (Direct Track) · Since Oct 2025',
+          email: 'yinyin.zheng@mail.huji.ac.il',
+          education: 'B.Sc. Chemical Engineering (Guangdong-Technion).',
+          focus: 'Abiotic transformations of organic matter–Fe mineral assemblages.',
+          quote: 'I love reading and having fun with friends.',
+          photo: 'images/member-yinyin.jpg',
+        },
+      ],
+      msc: [
+        {
+          name: 'Stav Almog',
+          role: 'M.Sc. Student · Since Oct 2024',
+          email: 'stav.almog@mail.huji.ac.il',
+          education: 'B.Sc. Biochemistry & Food Science (HUJI).',
+          focus: 'Bacterial growth dynamics in the presence of iron minerals.',
+          quote: 'I love traveling, exploring nature, diving and surfing — I am an extreme sports enthusiast and I have a deep connection with the ocean.',
+          photo: 'images/member-stav.jpg',
+        },
+        {
+          name: 'Naama Yanko',
+          role: 'M.Sc. Student · Since Oct 2025',
+          email: 'naama.yanko1@mail.huji.ac.il',
+          education: 'B.Sc. Plant Sciences (HUJI).',
+          focus: 'Mechanisms of organic matter degradation in anoxic marine settings.',
+          quote: 'I love the sea, hiking, and making crafts.',
+          photo: 'images/member-naama.jpg',
+        },
+        {
+          name: 'Isca Ilan',
+          role: 'M.Sc. Student · Since Oct 2026',
+          email: 'isca.ilan@mail.huji.ac.il',
+          education: 'B.Sc. Earth Sciences (Ben-Gurion University of the Negev).',
+          focus: 'Nitrogen oxide emissions following rewetting of dry soils.',
+          quote: 'I love the desert, hiking, and discovering new things.',
+          photo: 'images/member-isca.jpg',
+        },
+      ],
+      bsc: [
+        {
+          name: 'Yoav Novoplanski',
+          role: 'B.Sc. Project Student · Since Oct 2026',
+          email: 'yoav.novoplanski@mail.huji.ac.il',
+          education: '3rd year B.Sc., Dept. of Soil and Water Sciences (HUJI).',
+          focus: 'Characterizing mineral-associated organic matter across diverse soils.',
+          quote: 'I love hiking, running, woodworking, and riding motorcycles and bicycles.',
+          photo: 'images/member-yoav.jpg',
+        },
+        {
+          name: 'Omer Maor',
+          role: 'B.Sc. Student Assistant · Since May 2026',
+          email: 'omer.maor@mail.huji.ac.il',
+          education: '2nd year B.Sc., Agroecology and Plant Health (HUJI).',
+          focus: '',
+          quote: 'I love sports, the outdoors, old-school music, and great food.',
+          photo: 'images/member-omer.jpg',
+        },
+      ],
+    };
+
+    // -----------------------------------------------------------------------
+    // 3. VERIFIED PUBLICATIONS DATA
+    // -----------------------------------------------------------------------
+    const PUBLICATIONS = [
+      {
+        year: 2026,
+        featured: true,
+        authors: '<strong class="font-semibold text-ink">Zheng, Y.</strong>, Kovarik, L., Kukkadapu, R. K., Zhao, Q., &amp; <strong class="font-semibold text-ink">Engel, M.</strong>',
+        title: 'Coprecipitated Silica Controls the Divergent Pathways of Cysteine-Induced Ferrihydrite Transformation',
+        journal: 'Environmental Science & Technology',
+        citation: '60(32), 22466–22476',
+        doi: '',
+      },
+      {
+        year: 2026,
+        featured: false,
+        authors: 'Boye, K., Noël, V., Babey, T., Pierce, S. W., Kukkadapu, R., Zhao, Q., Bargar, J. R., &amp; <strong class="font-semibold text-ink">Engel, M.</strong>',
+        title: 'Organic matter and Fe colloid dynamics in a mountainous headwater stream floodplain',
+        journal: 'Environmental Science: Nano',
+        citation: '13(11), 4285–4295',
+        doi: '',
+      },
+      {
+        year: 2024,
+        featured: false,
+        authors: 'Spielman-Sun, E., Boye, K., Dwivedi, D., <strong class="font-semibold text-ink">Engel, M.</strong>, Thompson, A., Kumar, N., &amp; Noël, V.',
+        title: 'A Critical Look at Colloid Generation, Stability, and Transport in Redox-Dynamic Environments: Challenges and Perspectives',
+        journal: 'ACS Earth and Space Chemistry',
+        citation: '8(4), 630',
+        doi: '',
+      },
+      {
+        year: 2023,
+        featured: true,
+        authors: '<strong class="font-semibold text-ink">Engel, M.</strong>, Noël, V., Pierce, S., Kovarik, L., Kukkadapu, R. K., Pacheco, J. S. L., et al.',
+        title: 'Structure and composition of natural ferrihydrite nano-colloids in anoxic groundwater',
+        journal: 'Water Research',
+        citation: '238, 119990',
+        doi: '',
+      },
+      {
+        year: 2022,
+        featured: false,
+        authors: '<strong class="font-semibold text-ink">Engel, M.</strong>, Noël, V., Kukkadapu, R. K., Boye, K., Bargar, J. R., &amp; Fendorf, S.',
+        title: 'Nitrate Controls on the Extent and Type of Metal Retention in Fine-Grained Sediments of a Simulated Aquifer',
+        journal: 'Environmental Science & Technology',
+        citation: '56(20), 14452–14461',
+        doi: 'https://doi.org/10.1021/acs.est.2c03403',
+      },
+      {
+        year: 2022,
+        featured: false,
+        authors: 'Aeppli, M., Babey, T., <strong class="font-semibold text-ink">Engel, M.</strong>, Lacroix, E. M., Tolar, B. B., Fendorf, S., Bargar, J. R., &amp; Boye, K.',
+        title: 'Export of Organic Carbon from Reduced Fine-Grained Zones Governs Biogeochemical Reactivity in a Simulated Aquifer',
+        journal: 'Environmental Science & Technology',
+        citation: '56(4), 2738–2746',
+        doi: 'https://doi.org/10.1021/acs.est.1c04664',
+      },
+      {
+        year: 2021,
+        featured: false,
+        authors: '<strong class="font-semibold text-ink">Engel, M.</strong>, Boye, K., Noël, V., Babey, T., Bargar, J. R., &amp; Fendorf, S.',
+        title: 'Simulated Aquifer Heterogeneity Leads to Enhanced Attenuation and Multiple Retention Processes of Zinc',
+        journal: 'Environmental Science & Technology',
+        citation: '55(5), 2939–2948',
+        doi: '',
+      },
+      {
+        year: 2021,
+        featured: false,
+        authors: '<strong class="font-semibold text-ink">Engel, M.</strong>, Pacheco, J. S. L., Noël, V., Boye, K., &amp; Fendorf, S.',
+        title: 'Organic compounds alter the preference and rates of heavy metal adsorption on ferrihydrite',
+        journal: 'Science of the Total Environment',
+        citation: '750, 141485',
+        doi: '',
+      },
+    ];
+
+    // -----------------------------------------------------------------------
+    // 4. REAL CHRONOLOGICAL NEWS & LAB LIFE ITEMS
+    // -----------------------------------------------------------------------
     const NEWS_ITEMS = [
       {
         date: 'June 2026',
-        category: 'Lab Milestone',
-        title: 'Newly Renovated Lab Space Opens in Rehovot',
-        summary: 'We are excited to move into our renovated biogeochemistry laboratory at the Faculty of Agriculture, expanding our space for collaborative research and student training.',
-        photoLabel: '[Photo: Renovated Lab Space]',
-      },
-      {
-        date: 'Spring 2026',
-        category: 'Grants & Collaboration',
-        title: 'New International Research Collaborations',
-        summary: 'Advancing joint biogeochemistry initiatives with academic partners in Europe, the United States, and Israel.',
-        photoLabel: '[Photo: Conference / Workshop]',
-      },
-      {
-        date: 'Fall 2025',
         category: 'Lab Life',
-        title: 'Group Outing & Field Course Highlights',
-        summary: 'Taking a break from the bench for a team outing and hands-on environmental field sampling with students.',
-        photoLabel: '[Photo: Lab Group Outing]',
+        title: 'Moving Into Our New Lab',
+        summary: 'After three years in a temporary space, the BioGeoChem Lab moved into its newly renovated quarters at the Faculty of Agriculture!',
+        photo: 'images/news-new-lab-2026.jpg',
+      },
+      {
+        date: 'June 2026',
+        category: 'Lab Life',
+        title: 'Group Climbing Outing',
+        summary: 'Taking a break from the bench for a fun lab climbing day together.',
+        photo: 'images/news-climbing-2026.jpg',
+      },
+      {
+        date: 'January 2026',
+        category: 'Lab Life',
+        title: "Celebrating Bar's Thesis Defense & New Year's at Maya's",
+        summary: "Congratulations to Bar Asraf on a successful M.Sc. thesis defense, plus kicking off 2026 together at Maya's home.",
+        photo: 'images/news-bar-defense-2026.jpg',
+      },
+      {
+        date: 'December 2025',
+        category: 'Lab Life',
+        title: 'Field Course in Eilat & Group Gathering',
+        summary: 'Combining hands-on biogeochemical field sampling in Eilat with a wonderful group gathering.',
+        photo: 'images/news-eilat-2025.jpg',
+      },
+      {
+        date: 'November 2025',
+        category: 'Conferences',
+        title: 'ERW Meeting in London, UK',
+        summary: 'Zenawi presented a poster on silicate mineral weathering and carbon storage at the Enhanced Rock Weathering meeting in London.',
+        photo: 'images/news-erw-london-2025.jpg',
+      },
+      {
+        date: 'July 2025',
+        category: 'Conferences',
+        title: 'Goldschmidt Conference in Prague & End-of-Semester Bowling',
+        summary: 'Maya gave a talk on biogeochemical cycling at Goldschmidt in Prague, followed by our end-of-semester bowling celebration back home.',
+        photo: 'images/news-goldschmidt-2025.jpg',
+      },
+      {
+        date: 'April 2025',
+        category: 'Conferences',
+        title: 'EGU General Assembly in Vienna, Austria',
+        summary: 'Maya convened a session and presented alongside Bar at the European Geosciences Union General Assembly in Vienna.',
+        photo: 'images/news-egu-vienna-2025.jpg',
+      },
+      {
+        date: 'March 2025',
+        category: 'Conferences',
+        title: 'HUJI Nano & Faculty Graduate Student Conferences',
+        summary: "Yinyin and Bar presented posters showcasing the BioGeoChem Lab's research at the HUJI Nano and Faculty graduate student conferences.",
+        photo: 'images/news-huji-nano-2025.jpg',
+      },
+      {
+        date: 'December 2024',
+        category: 'Lab Life',
+        title: 'Soil & Water Department Day',
+        summary: 'Building a Menorah together at the Department of Soil and Water Sciences celebration.',
+        photo: 'images/news-dept-day-2024.jpg',
+      },
+      {
+        date: 'September 2024',
+        category: 'Conferences',
+        title: 'RegenIL 2024 Workshop',
+        summary: 'Maya participated in the RegenIL 2024 workshop at Mikve Israel.',
+        photo: 'images/news-regenil-2024.jpg',
       },
     ];
 
-    // 3. Placeholder Publications (3 Clean Entries Ready for Full List)
-    const PUBLICATIONS = [
-      {
-        year: '2026',
-        featured: true,
-        authors: 'Lab Member, A., Collaborator, B., & <strong class="font-semibold text-charcoal">Engel, M.</strong>',
-        title: '[Placeholder Entry] Organo-mineral interactions and soil carbon persistence across redox gradients',
-        journal: 'Environmental Science & Technology',
-        details: '2026',
-      },
-      {
-        year: '2026',
-        featured: false,
-        authors: '<strong class="font-semibold text-charcoal">Engel, M.</strong>, & Collaborator, C.',
-        title: '[Placeholder Entry] Coupled elemental cycling and nutrient dynamics in terrestrial environments',
-        journal: 'Geochimica et Cosmochimica Acta',
-        details: '2026',
-      },
-      {
-        year: '2025',
-        featured: true,
-        authors: '<strong class="font-semibold text-charcoal">Engel, M.</strong>, Partner, D., & Collaborator, E.',
-        title: '[Placeholder Entry] Mineral transformations and environmental resilience in semi-arid soils',
-        journal: 'Soil Biology and Biochemistry',
-        details: '2025',
-      },
-    ];
-
+    // -----------------------------------------------------------------------
+    // STATE
+    // -----------------------------------------------------------------------
+    const VALID_PAGES = ['home', 'research', 'group', 'publications', 'news', 'teaching', 'join'];
     let currentPubFilter = 'all';
     let currentPubSearch = '';
+    let currentNewsFilter = 'all';
     let toastTimer = null;
 
-    // 4. Client-Side Page Navigation
-    function navigateTo(pageId) {
+    // -----------------------------------------------------------------------
+    // 5. ROUTING WITH URL HASH SUPPORT
+    // -----------------------------------------------------------------------
+    function navigateTo(pageId, event, updateHash = true) {
+      if (event) event.preventDefault();
+      const targetPage = VALID_PAGES.includes(pageId) ? pageId : 'home';
+
       try {
+        // Switch active view
         document.querySelectorAll('.page-view').forEach((section) => {
           section.classList.add('hidden');
         });
-        const target = document.getElementById(`page-${pageId}`);
-        if (target) target.classList.remove('hidden');
+        const activeSection = document.getElementById(`page-${targetPage}`);
+        if (activeSection) activeSection.classList.remove('hidden');
 
-        // Desktop active nav state
-        document.querySelectorAll('.nav-link').forEach((btn) => {
-          const isActive = btn.getAttribute('data-nav') === pageId;
+        // Desktop nav styling
+        document.querySelectorAll('.nav-link').forEach((link) => {
+          const isActive = link.getAttribute('data-nav') === targetPage;
           if (isActive) {
-            btn.classList.add('text-burgundy', 'bg-burgundy-soft');
-            btn.classList.remove('text-slate', 'hover:text-charcoal', 'hover:bg-stone');
+            link.classList.add('text-burgundy', 'bg-burgundy-soft');
+            link.classList.remove('text-muted', 'hover:text-ink', 'hover:bg-wirefill');
           } else {
-            btn.classList.remove('text-burgundy', 'bg-burgundy-soft');
-            btn.classList.add('text-slate', 'hover:text-charcoal', 'hover:bg-stone');
+            link.classList.remove('text-burgundy', 'bg-burgundy-soft');
+            link.classList.add('text-muted', 'hover:text-ink', 'hover:bg-wirefill');
           }
         });
 
-        // Mobile active nav state
-        document.querySelectorAll('.mobile-nav-link').forEach((btn) => {
-          const isActive = btn.getAttribute('data-nav') === pageId;
+        // Mobile nav styling
+        document.querySelectorAll('.mobile-nav-link').forEach((link) => {
+          const isActive = link.getAttribute('data-nav') === targetPage;
           if (isActive) {
-            btn.classList.add('text-burgundy', 'bg-burgundy-soft');
-            btn.classList.remove('text-slate', 'hover:bg-stone');
+            link.classList.add('text-burgundy', 'bg-burgundy-soft');
+            link.classList.remove('text-muted', 'hover:bg-wirefill');
           } else {
-            btn.classList.remove('text-burgundy', 'bg-burgundy-soft');
-            btn.classList.add('text-slate', 'hover:bg-stone');
+            link.classList.remove('text-burgundy', 'bg-burgundy-soft');
+            link.classList.add('text-muted', 'hover:bg-wirefill');
           }
         });
+
+        // Sync URL hash without jarring anchor jump
+        if (updateHash && window.location.hash !== `#${targetPage}`) {
+          history.pushState(null, '', `#${targetPage}`);
+        }
 
         closeMobileMenu();
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -1104,14 +1460,24 @@
       }
     }
 
-    // 5. Mobile Menu Helpers
+    function syncRouteFromHash() {
+      const hash = window.location.hash.replace('#', '').trim().toLowerCase();
+      navigateTo(VALID_PAGES.includes(hash) ? hash : 'home', null, false);
+    }
+
+    window.addEventListener('hashchange', syncRouteFromHash);
+
+    // -----------------------------------------------------------------------
+    // 6. MOBILE MENU HELPERS
+    // -----------------------------------------------------------------------
     function toggleMobileMenu() {
       const menu = document.getElementById('mobile-menu');
       const btn = document.getElementById('mobile-menu-btn');
       const openIcon = document.getElementById('menu-icon-open');
       const closeIcon = document.getElementById('menu-icon-close');
-      const isHidden = menu.classList.contains('hidden');
+      if (!menu) return;
 
+      const isHidden = menu.classList.contains('hidden');
       if (isHidden) {
         menu.classList.remove('hidden');
         openIcon.classList.add('hidden');
@@ -1134,39 +1500,41 @@
       btn.setAttribute('aria-expanded', 'false');
     }
 
-    // 6. Render Lab Snapshots & Lightbox
-    function renderSnapshots() {
-      const grid = document.getElementById('snapshots-grid');
+    // -----------------------------------------------------------------------
+    // 7. RENDER EXPERIMENTS & LIGHTBOX
+    // -----------------------------------------------------------------------
+    function renderExperiments() {
+      const grid = document.getElementById('experiments-grid');
       if (!grid) return;
 
-      grid.innerHTML = SNAPSHOTS.map((item, idx) => `
+      grid.innerHTML = EXPERIMENTS.map((item, idx) => `
         <button
           type="button"
           onclick="openLightbox(${idx})"
-          class="bg-card rounded-xl border border-hairline overflow-hidden text-left group hover:border-teal transition-colors focus:outline-none"
+          class="bg-card rounded-xl border border-hairline overflow-hidden text-left group hover:border-teal transition-colors focus:outline-none flex flex-col"
         >
-          <div class="relative aspect-[4/3] w-full bg-stone border-b border-dashed border-wireborder flex flex-col items-center justify-center p-4 text-center">
-            <span class="absolute top-2.5 right-2.5 text-[10px] font-mono text-slate">4:3</span>
-            <svg class="w-6 h-6 text-slate/60 mb-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.4">
+          <div class="relative aspect-[4/3] w-full bg-wirefill border-b border-dashed border-wireborder flex flex-col items-center justify-center p-4 text-center">
+            <span class="absolute top-2.5 right-2.5 text-[10px] font-mono text-muted">4:3</span>
+            <svg class="w-6 h-6 text-muted/70 mb-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.4">
               <rect x="3" y="3" width="18" height="18" rx="2"></rect>
               <circle cx="8.5" cy="8.5" r="1.5"></circle>
               <path d="M21 15l-5-5L5 21"></path>
             </svg>
-            <span class="text-xs font-medium text-charcoal">${item.slotLabel}</span>
+            <span class="text-[11px] font-mono text-muted">${item.filename}</span>
           </div>
-          <div class="p-4">
-            <h3 class="font-serif text-lg font-semibold text-charcoal group-hover:text-teal transition-colors">${item.title}</h3>
-            <p class="text-xs text-slate mt-1 leading-relaxed">${item.caption}</p>
+          <div class="p-4 flex-grow">
+            <h3 class="font-serif text-lg font-semibold text-ink group-hover:text-teal transition-colors leading-snug">${item.title}</h3>
+            <p class="text-xs text-muted mt-1.5 leading-relaxed">${item.caption}</p>
           </div>
         </button>
       `).join('');
     }
 
     function openLightbox(index) {
-      const item = SNAPSHOTS[index];
+      const item = EXPERIMENTS[index];
       if (!item) return;
       document.getElementById('lightbox-title').textContent = item.title;
-      document.getElementById('lightbox-slot-label').textContent = item.slotLabel;
+      document.getElementById('lightbox-filename').textContent = item.filename;
       document.getElementById('lightbox-caption').textContent = item.caption;
       const modal = document.getElementById('lightbox-modal');
       modal.classList.remove('hidden');
@@ -1190,51 +1558,60 @@
       if (e.key === 'Escape') closeLightbox();
     });
 
-    // 7. Render Home Latest News & Full News Feed
-    function renderNews() {
-      const homeGrid = document.getElementById('home-news-grid');
-      if (homeGrid) {
-        homeGrid.innerHTML = NEWS_ITEMS.slice(0, 3).map((item) => `
-          <article class="bg-card rounded-xl border border-hairline p-5 flex flex-col justify-between space-y-3 hover:border-wireborder transition-colors">
-            <div class="space-y-2">
-              <div class="flex items-center justify-between text-xs">
-                <span class="font-semibold text-burgundy">${item.category}</span>
-                <span class="text-slate">${item.date}</span>
-              </div>
-              <h3 class="font-serif text-xl font-semibold text-charcoal leading-snug">${item.title}</h3>
-              <p class="text-sm text-slate leading-relaxed">${item.summary}</p>
-            </div>
-          </article>
-        `).join('');
-      }
-
-      const feed = document.getElementById('news-feed');
-      if (feed) {
-        feed.innerHTML = NEWS_ITEMS.map((item) => `
-          <article class="bg-card rounded-2xl border border-hairline overflow-hidden grid grid-cols-1 md:grid-cols-12">
-            <div class="md:col-span-5 relative aspect-[16/10] md:aspect-auto bg-stone border-b md:border-b-0 md:border-r border-dashed border-wireborder flex flex-col items-center justify-center p-5 text-center">
-              <span class="absolute top-3 right-3 text-[10px] font-mono text-slate">16:10</span>
-              <svg class="w-6 h-6 text-slate/60 mb-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.4">
-                <rect x="3" y="3" width="18" height="18" rx="2"></rect>
-                <circle cx="8.5" cy="8.5" r="1.5"></circle>
-                <path d="M21 15l-5-5L5 21"></path>
+    // -----------------------------------------------------------------------
+    // 8. RENDER GROUP MEMBER CARDS
+    // -----------------------------------------------------------------------
+    function buildMemberCard(member) {
+      return `
+        <article class="bg-card rounded-xl border border-hairline p-5 flex flex-col justify-between space-y-4">
+          <div class="space-y-4">
+            <div class="relative aspect-square w-full rounded-lg bg-wirefill border border-dashed border-wireborder flex flex-col items-center justify-center p-4 text-center">
+              <span class="absolute top-2.5 right-2.5 text-[10px] font-mono text-muted">1:1</span>
+              <svg class="w-7 h-7 text-muted/60 mb-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.4">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
               </svg>
-              <span class="text-xs font-medium text-charcoal">${item.photoLabel}</span>
+              <span class="text-xs font-medium text-ink">${member.name}</span>
+              <span class="text-[10px] font-mono text-muted mt-0.5">${member.photo}</span>
             </div>
-            <div class="md:col-span-7 p-6 sm:p-7 flex flex-col justify-center space-y-2.5">
-              <div class="flex items-center gap-3 text-xs">
-                <span class="px-2.5 py-0.5 rounded-md bg-burgundy-soft text-burgundy font-semibold">${item.category}</span>
-                <span class="text-slate">${item.date}</span>
-              </div>
-              <h2 class="font-serif text-2xl font-semibold text-charcoal">${item.title}</h2>
-              <p class="text-sm text-slate leading-relaxed">${item.summary}</p>
+
+            <div class="space-y-1.5">
+              <h3 class="font-serif text-xl font-semibold text-ink">${member.name}</h3>
+              <p class="text-xs font-semibold uppercase tracking-wider text-teal">${member.role}</p>
+              <p class="text-xs text-muted">
+                <a href="mailto:${member.email}" class="hover:text-burgundy underline underline-offset-2">${member.email}</a>
+              </p>
             </div>
-          </article>
-        `).join('');
-      }
+
+            <div class="space-y-2 text-xs sm:text-sm text-muted leading-relaxed">
+              <p>${member.education}</p>
+              ${member.focus ? `<p><strong class="text-ink font-medium">Focus:</strong> ${member.focus}</p>` : ''}
+            </div>
+          </div>
+
+          <blockquote class="pt-3 border-t border-hairline text-xs italic text-muted leading-relaxed">
+            “${member.quote}”
+          </blockquote>
+        </article>
+      `;
     }
 
-    // 8. Publications Search & Filter
+    function renderGroup() {
+      const sections = [
+        { id: 'group-manager-grid', data: GROUP_MEMBERS.manager },
+        { id: 'group-phd-grid', data: GROUP_MEMBERS.phd },
+        { id: 'group-msc-grid', data: GROUP_MEMBERS.msc },
+        { id: 'group-bsc-grid', data: GROUP_MEMBERS.bsc },
+      ];
+      sections.forEach(({ id, data }) => {
+        const el = document.getElementById(id);
+        if (el) el.innerHTML = data.map(buildMemberCard).join('');
+      });
+    }
+
+    // -----------------------------------------------------------------------
+    // 9. RENDER PUBLICATIONS WITH SEARCH & YEAR FILTERS
+    // -----------------------------------------------------------------------
     function handlePubSearch(val) {
       currentPubSearch = (val || '').trim().toLowerCase();
       renderPublications();
@@ -1246,10 +1623,10 @@
         const isActive = btn.getAttribute('data-pub-filter') === filter;
         if (isActive) {
           btn.classList.add('bg-burgundy', 'text-white');
-          btn.classList.remove('bg-card', 'text-slate', 'border', 'border-hairline', 'hover:text-charcoal');
+          btn.classList.remove('bg-card', 'text-muted', 'border', 'border-hairline', 'hover:text-ink');
         } else {
           btn.classList.remove('bg-burgundy', 'text-white');
-          btn.classList.add('bg-card', 'text-slate', 'border', 'border-hairline', 'hover:text-charcoal');
+          btn.classList.add('bg-card', 'text-muted', 'border', 'border-hairline', 'hover:text-ink');
         }
       });
       renderPublications();
@@ -1260,17 +1637,18 @@
       if (!container) return;
 
       const filtered = PUBLICATIONS.filter((pub) => {
-        const matchesFilter =
+        const matchesYear =
           currentPubFilter === 'all' ||
-          (currentPubFilter === 'featured' && pub.featured) ||
-          pub.year === currentPubFilter;
-        if (!matchesFilter) return false;
+          (currentPubFilter === '2021-earlier' && pub.year <= 2021) ||
+          String(pub.year) === currentPubFilter;
+        if (!matchesYear) return false;
         if (!currentPubSearch) return true;
-        return `${pub.title} ${pub.authors} ${pub.journal} ${pub.year}`.toLowerCase().includes(currentPubSearch);
+        const plainAuthors = pub.authors.replace(/<[^>]*>/g, '');
+        return `${pub.title} ${plainAuthors} ${pub.journal} ${pub.year}`.toLowerCase().includes(currentPubSearch);
       });
 
       if (filtered.length === 0) {
-        container.innerHTML = `<div class="bg-card rounded-xl border border-hairline p-6 text-sm text-slate">No publications match your search or filter.</div>`;
+        container.innerHTML = `<div class="bg-card rounded-xl border border-hairline p-6 text-sm text-muted">No publications match your current search or year filter.</div>`;
         return;
       }
 
@@ -1285,30 +1663,109 @@
       container.innerHTML = years.map((year) => `
         <div class="space-y-4">
           <div class="flex items-center gap-3">
-            <h2 class="font-serif text-2xl font-semibold text-charcoal">${year}</h2>
+            <h2 class="font-serif text-2xl font-semibold text-ink">${year}</h2>
             <div class="h-px bg-hairline flex-grow"></div>
           </div>
           <div class="space-y-4">
-            ${grouped[year].map((pub) => `
-              <article class="bg-card rounded-xl border border-hairline p-5 space-y-2">
-                <div class="flex items-start justify-between gap-3">
-                  <h3 class="font-serif text-lg sm:text-xl font-semibold text-charcoal leading-snug">${pub.title}</h3>
-                  ${pub.featured ? `<span class="px-2.5 py-0.5 rounded-full bg-burgundy-soft text-burgundy text-[11px] font-semibold shrink-0">Featured</span>` : ''}
-                </div>
-                <p class="text-sm text-slate">${pub.authors}</p>
-                <p class="text-sm text-slate"><em class="text-charcoal">${pub.journal}</em> (${pub.details})</p>
-                <div class="flex items-center gap-2 pt-1.5">
-                  <button type="button" onclick="showToast('Add publisher DOI link');" class="px-3 py-1 rounded-md bg-teal-soft text-teal hover:bg-teal hover:text-white text-xs font-medium transition-colors">DOI</button>
-                  <button type="button" onclick="showToast('Add open-access PDF link');" class="px-3 py-1 rounded-md bg-stone text-charcoal hover:bg-hairline text-xs font-medium transition-colors">PDF</button>
-                </div>
-              </article>
-            `).join('')}
+            ${grouped[year].map((pub) => {
+              const scholarQuery = encodeURIComponent(pub.title);
+              return `
+                <article class="bg-card rounded-xl border border-hairline p-5 sm:p-6 space-y-2.5">
+                  <div class="flex items-start justify-between gap-3">
+                    <h3 class="font-serif text-lg sm:text-xl font-semibold text-ink leading-snug">${pub.title}</h3>
+                    ${pub.featured ? `<span class="px-2.5 py-0.5 rounded-full bg-burgundy-soft text-burgundy text-[11px] font-semibold shrink-0">Featured</span>` : ''}
+                  </div>
+                  <p class="text-sm text-muted leading-relaxed">${pub.authors}</p>
+                  <p class="text-sm text-muted">
+                    <em class="text-ink">${pub.journal}</em>, ${pub.citation} (${pub.year})
+                  </p>
+                  <div class="flex flex-wrap items-center gap-2 pt-1.5">
+                    ${pub.doi
+                      ? `<a href="${pub.doi}" target="_blank" rel="noopener noreferrer" class="px-3 py-1 rounded-md bg-teal-soft text-teal hover:bg-teal hover:text-white text-xs font-medium transition-colors">DOI ↗</a>`
+                      : `<a href="https://scholar.google.com/scholar?q=${scholarQuery}" target="_blank" rel="noopener noreferrer" class="px-3 py-1 rounded-md bg-teal-soft text-teal hover:bg-teal hover:text-white text-xs font-medium transition-colors">Find on Scholar ↗</a>`
+                    }
+                  </div>
+                </article>
+              `;
+            }).join('')}
           </div>
         </div>
       `).join('');
     }
 
-    // 9. One-Click Copy Email (iFrame-safe)
+    // -----------------------------------------------------------------------
+    // 10. RENDER NEWS (HOME PREVIEW & FILTERABLE FULL FEED)
+    // -----------------------------------------------------------------------
+    function renderHomeNews() {
+      const homeGrid = document.getElementById('home-news-grid');
+      if (!homeGrid) return;
+
+      homeGrid.innerHTML = NEWS_ITEMS.slice(0, 3).map((item) => `
+        <article class="bg-card rounded-xl border border-hairline p-5 flex flex-col justify-between space-y-3 hover:border-wireborder transition-colors">
+          <div class="space-y-2">
+            <div class="flex items-center justify-between text-xs">
+              <span class="font-semibold text-burgundy">${item.category}</span>
+              <span class="text-muted">${item.date}</span>
+            </div>
+            <h3 class="font-serif text-xl font-semibold text-ink leading-snug">${item.title}</h3>
+            <p class="text-sm text-muted leading-relaxed">${item.summary}</p>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    function filterNews(category) {
+      currentNewsFilter = category;
+      document.querySelectorAll('.news-filter-btn').forEach((btn) => {
+        const isActive = btn.getAttribute('data-news-filter') === category;
+        if (isActive) {
+          btn.classList.add('bg-burgundy', 'text-white');
+          btn.classList.remove('bg-card', 'text-muted', 'border', 'border-hairline', 'hover:text-ink');
+        } else {
+          btn.classList.remove('bg-burgundy', 'text-white');
+          btn.classList.add('bg-card', 'text-muted', 'border', 'border-hairline', 'hover:text-ink');
+        }
+      });
+      renderNewsFeed();
+    }
+
+    function renderNewsFeed() {
+      const feed = document.getElementById('news-feed');
+      if (!feed) return;
+
+      const filtered = NEWS_ITEMS.filter((item) =>
+        currentNewsFilter === 'all' || item.category === currentNewsFilter
+      );
+
+      feed.innerHTML = filtered.map((item) => `
+        <article class="bg-card rounded-2xl border border-hairline overflow-hidden grid grid-cols-1 md:grid-cols-12">
+          <div class="md:col-span-5 relative aspect-[16/10] md:aspect-auto min-h-[180px] bg-wirefill border-b md:border-b-0 md:border-r border-dashed border-wireborder flex flex-col items-center justify-center p-5 text-center">
+            <span class="absolute top-3 right-3 text-[10px] font-mono text-muted">16:10</span>
+            <svg class="w-6 h-6 text-muted/70 mb-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.4">
+              <rect x="3" y="3" width="18" height="18" rx="2"></rect>
+              <circle cx="8.5" cy="8.5" r="1.5"></circle>
+              <path d="M21 15l-5-5L5 21"></path>
+            </svg>
+            <span class="text-xs font-medium text-ink">${item.title}</span>
+            <span class="text-[10px] font-mono text-muted mt-0.5">${item.photo}</span>
+          </div>
+          <div class="md:col-span-7 p-6 sm:p-7 flex flex-col justify-center space-y-2.5">
+            <div class="flex flex-wrap items-center gap-2.5 text-xs">
+              <span class="px-2.5 py-0.5 rounded-md ${item.category === 'Conferences' ? 'bg-teal-soft text-teal' : 'bg-burgundy-soft text-burgundy'} font-semibold">
+                ${item.category === 'Conferences' ? 'Conferences & Talks' : item.category}
+              </span>
+              <span class="text-muted font-medium">${item.date}</span>
+            </div>
+            <h2 class="font-serif text-2xl font-semibold text-ink leading-snug">${item.title}</h2>
+            <p class="text-sm text-muted leading-relaxed">${item.summary}</p>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    // -----------------------------------------------------------------------
+    // 11. ONE-CLICK COPY EMAIL (IFRAME-SAFE) & TOAST
+    // -----------------------------------------------------------------------
     function copyEmailAddress() {
       const email = 'maya.engel@mail.huji.ac.il';
       const label = document.getElementById('copy-email-label');
@@ -1327,14 +1784,13 @@
           label.textContent = 'Copied!';
           setTimeout(() => { label.textContent = 'Copy Email'; }, 2000);
         }
-        showToast('Copied maya.engel@mail.huji.ac.il');
+        showToast('Copied maya.engel@mail.huji.ac.il to clipboard');
       } catch (err) {
         console.error('Copy failed:', err);
         showToast('Email: maya.engel@mail.huji.ac.il');
       }
     }
 
-    // 10. Subtle Toast Helper
     function showToast(msg) {
       const toast = document.getElementById('toast');
       const msgEl = document.getElementById('toast-message');
@@ -1349,12 +1805,16 @@
       }, 2800);
     }
 
-    // Initialize Application
+    // -----------------------------------------------------------------------
+    // INITIALIZE APPLICATION
+    // -----------------------------------------------------------------------
     window.addEventListener('DOMContentLoaded', () => {
-      renderSnapshots();
-      renderNews();
+      renderExperiments();
+      renderGroup();
+      renderHomeNews();
       filterPublications('all');
-      navigateTo('home');
+      filterNews('all');
+      syncRouteFromHash();
     });
   </script>
 
